@@ -1,0 +1,19 @@
+@import './variables.scss';
+
+.Nav {
+    font-family: $font;
+    background: #ececec;
+    width: 100%;
+    nav {
+        display: flex;
+        padding: 0 1rem;
+        max-width: $maxWidth;
+        margin: auto;
+        a {
+            height: 60px;
+            display: flex;
+            align-items: center;
+            margin-right: 1.5rem;
+        }
+    }
+}

@@ -1,0 +1,31 @@
+@import '../variables.scss';
+
+.Player {
+    max-width: $maxWidth;
+    margin: auto;
+    font-family: $font;
+    padding: 0 1rem;
+    .intro {
+        display: flex;
+        flex-direction: column;
+        @media screen and (min-width: $minWidthTablet) {
+            flex-direction: row;
+        }
+        .profileImage {
+            min-width: 200px;
+            max-height: 200px;
+            border-radius: 16px;
+            box-shadow: 0px 15px 25px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+        }
+        .about {
+            flex-grow: 1;
+            @media screen and (min-width: $minWidthTablet) {
+                margin-left: 2rem;
+            }
+        }
+    }
+    .stats {
+        
+    }
+}

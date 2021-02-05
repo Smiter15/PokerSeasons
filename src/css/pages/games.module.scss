@@ -1,0 +1,8 @@
+@import '../variables.scss';
+
+.Games {
+    max-width: $maxWidth;
+    margin: auto;
+    font-family: $font;
+    padding: 0 1rem;
+}
