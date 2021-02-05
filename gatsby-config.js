@@ -1,6 +1,7 @@
 module.exports = {
     siteMetadata: {
-        title: 'Poker Seasons'
+        title: 'Poker Seasons',
+        siteUrl: 'https://needstobetheproductionurl.com'
     },
     plugins: [
         'gatsby-plugin-sass',
