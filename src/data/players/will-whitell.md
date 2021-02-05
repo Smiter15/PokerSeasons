@@ -13,6 +13,13 @@ blurb: >-
     His biggest tournament win to date is circa $25.
     <br />
     He wouldn't actually fish, as that goes against his vegan religion.
+
+seasons:
+    - 1
+
+games:
+    - 1
+
 careerEarnings: 7
 seasonsPlayed: 1
 gamesPlayed: 7

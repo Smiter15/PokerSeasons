@@ -1,7 +1,7 @@
 module.exports = {
     siteMetadata: {
         title: 'Poker Seasons',
-        siteUrl: 'https://needstobetheproductionurl.com'
+        siteUrl: 'https://relaxed-lamarr-acb28f.netlify.app/'
     },
     plugins: [
         'gatsby-plugin-sass',

@@ -13,6 +13,13 @@ blurb: >-
     His biggest tournament win to date is circa $68.
     <br />
     Despite his nick name, he in fact has small bollocks.
+
+seasons:
+    - 1
+
+games:
+    - 1
+
 careerEarnings: 120
 seasonsPlayed: 1
 gamesPlayed: 8

@@ -1,28 +1,14 @@
 import React from 'react';
-import { useStaticQuery, graphql, Link } from 'gatsby';
+import { Link } from 'gatsby';
 
 import styles from '../../css/pages/games.module.scss';
 
 import Layout from '../../components/Layout';
 
-const Games = () => {
-    const data = useStaticQuery(graphql`
-        query {
-            allMarkdownRemark(
-                filter: { fileAbsolutePath: { regex: "/(games)/" } }
-            ) {
-                edges {
-                    node {
-                        frontmatter {
-                            path
-                        }
-                    }
-                }
-            }
-        }
-    `);
+import { useGamesData } from '../../data/gamesData';
 
-    const gamesData = data.allMarkdownRemark.edges;
+const Games = () => {
+    const gamesData = useGamesData();
     const game = gamesData[0].node.frontmatter;
 
     return (
