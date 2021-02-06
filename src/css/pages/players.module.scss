@@ -1,10 +1,7 @@
 @import '../variables.scss';
 
 .Players {
-    max-width: $maxWidth;
-    margin: auto;
-    font-family: $font;
-    padding: 0 1rem;
+    @include page;
     .playerList {
         .player {
             padding: 1rem;

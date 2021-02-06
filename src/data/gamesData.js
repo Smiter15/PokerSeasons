@@ -17,7 +17,8 @@ export const useGamesData = () => {
                                 seasonGame
                                 players
                                 results
-                                active
+                                winner
+                                kitty
                                 complete
                             }
                         }

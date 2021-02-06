@@ -19,7 +19,7 @@ const Seasons = () => {
             <section className={styles.Seasons}>
                 <h1>Seasons</h1>
                 <p>Seasons will run every 10 weeks. Extra stuff to say</p>
-                <div>
+                <div className={styles.active}>
                     <h2>Active season</h2>
                     <Link to={seasonsData[0].node.frontmatter.path}>
                         Season {seasonsData[0].node.frontmatter.id}
@@ -27,6 +27,8 @@ const Seasons = () => {
                 </div>
                 <hr />
                 <h3>Previous seasons</h3>
+                <p>...</p>
+                <p>...</p>
                 <p>...</p>
             </section>
         </Layout>

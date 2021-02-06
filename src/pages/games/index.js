@@ -9,23 +9,24 @@ import { useGamesData } from '../../data/gamesData';
 
 const Games = () => {
     const gamesData = useGamesData();
-    const game = gamesData[0].node.frontmatter;
+
+    const game1 = gamesData[0].node.frontmatter;
+    const game2 = gamesData[1].node.frontmatter;
 
     return (
         <Layout>
             <section className={styles.Games}>
                 <h1>Games</h1>
                 <p>Game was played on x date</p>
-                <div>
-                    <h2>Last game's result</h2>
-                    <p>Matt won</p>
-                    <p>
-                        See more <Link to={game.path}>here</Link>
-                    </p>
+                <div className={styles.active}>
+                    <h2>Last game</h2>
+                    <Link to={game2.path}>Game 2</Link>
                 </div>
                 <hr />
                 <h3>Previous games</h3>
-                <p>...</p>
+                <p>
+                    <Link to={game1.path}>Game 1</Link>
+                </p>
                 <p>...</p>
                 <p>...</p>
             </section>

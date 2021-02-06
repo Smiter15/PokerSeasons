@@ -1,10 +1,7 @@
 @import '../variables.scss';
 
 .Player {
-    max-width: $maxWidth;
-    margin: auto;
-    font-family: $font;
-    padding: 0 1rem;
+    @include page;
     .intro {
         display: flex;
         flex-direction: column;

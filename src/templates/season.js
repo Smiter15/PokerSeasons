@@ -1,23 +1,59 @@
 import React from 'react';
-import { graphql, Link } from 'gatsby';
+import { graphql, navigate } from 'gatsby';
+import { AgGridReact } from 'ag-grid-react';
+
+import 'ag-grid-community/dist/styles/ag-grid.css';
+import 'ag-grid-community/dist/styles/ag-theme-alpine.css';
 
 import styles from '../css/templates/season.module.scss';
 
 import Layout from '../components/Layout';
+import ImageRenderer from '../components/grid/ImageRenderer';
+import PlayerRenderer from '../components/grid/PlayerRenderer';
 
 import { useGamesData } from '../data/gamesData';
 import { usePlayersData } from '../data/playersData';
 import { getSeasonGames, getSeasonPlayers } from '../data/utils';
 
+import { gridOptions } from '../components/grid/utils';
+
 export default function Template({ data }) {
     const { frontmatter } = data.markdownRemark;
     const seasonId = frontmatter.id;
 
+    // get data
     const gamesData = useGamesData();
     const games = getSeasonGames(gamesData, seasonId);
 
     const playersData = usePlayersData();
     const players = getSeasonPlayers(playersData, seasonId);
+
+    const playerColumns = [
+        { field: 'profileImage', cellRendererFramework: ImageRenderer },
+        { field: 'fullName' },
+        { field: 'currentSeasonPoints' },
+        { field: 'gamesPlayed' }
+    ];
+
+    const playerGrid = {
+        ...gridOptions,
+        columnDefs: playerColumns
+    };
+
+    const gameColumns = [
+        { field: 'seasonGame' },
+        { field: 'kitty' },
+        {
+            field: 'winner',
+            cellRendererFramework: PlayerRenderer,
+            cellRendererParams: { players }
+        }
+    ];
+
+    const gameGrid = {
+        ...gridOptions,
+        columnDefs: gameColumns
+    };
 
     return (
         <Layout>
@@ -26,28 +62,27 @@ export default function Template({ data }) {
                 <p>Money in the kitty: {frontmatter.currentKitty}</p>
                 <hr />
                 <div className={styles.stats}>
-                    <h2>This season's games</h2>
-                    {games.map((game) => {
-                        game = game.node.frontmatter;
-
-                        return (
-                            <Link key={game.id} to={game.path}>
-                                <p>Game {game.seasonGame}</p>
-                            </Link>
-                        );
-                    })}
+                    <h2>Standings</h2>
+                    <div className='ag-theme-alpine'>
+                        <AgGridReact
+                            gridOptions={playerGrid}
+                            rowData={players}
+                            onRowClicked={(row) => navigate(row.data.path)}
+                            domLayout='autoHeight'
+                        />
+                    </div>
                 </div>
+                <hr />
                 <div className={styles.stats}>
-                    <h2>This season's players</h2>
-                    {players.map((player) => {
-                        player = player.node.frontmatter;
-
-                        return (
-                            <Link key={player.id}>
-                                <p>{player.fullName}</p>
-                            </Link>
-                        );
-                    })}
+                    <h2>Games</h2>
+                    <div className='ag-theme-alpine'>
+                        <AgGridReact
+                            gridOptions={gameGrid}
+                            rowData={games}
+                            onRowClicked={(row) => navigate(row.data.path)}
+                            domLayout='autoHeight'
+                        />
+                    </div>
                 </div>
             </section>
         </Layout>

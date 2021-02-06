@@ -11,3 +11,10 @@ $minWidthTablet: 600px;
 $midWidthTablet: 800px;
 $maxWidthTablet: 959px;
 $maxWidthDesktop: 1200px;
+
+@mixin page {
+    max-width: $maxWidth;
+    margin: auto;
+    font-family: $font;
+    padding: 0 1rem 1rem;
+}

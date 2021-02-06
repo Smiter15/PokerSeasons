@@ -13,7 +13,9 @@ results:
     - 3
     - 1
 
+# player id
+winner: 3
+
 kitty: 50
-active: false
 complete: true
 ---
