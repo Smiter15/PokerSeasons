@@ -26,8 +26,12 @@ export default function Template({ data }) {
                             <b>Joined:</b> {frontmatter.joinedDate}
                             <br />
                             <b>Occupation:</b> {frontmatter.occupation}
-                            <br />
-                            <b>Role:</b> {frontmatter.role}
+                            {frontmatter.role && (
+                                <>
+                                    <br />
+                                    <b>Role:</b> {frontmatter.role}
+                                </>
+                            )}
                         </p>
                     </div>
                 </div>

@@ -6,6 +6,7 @@ export const usePlayersData = () => {
             query {
                 allMarkdownRemark(
                     filter: { fileAbsolutePath: { regex: "/(players)/" } }
+                    sort: { order: ASC, fields: frontmatter___id }
                 ) {
                     edges {
                         node {
@@ -18,6 +19,8 @@ export const usePlayersData = () => {
                                 occupation
                                 role
                                 blurb
+                                seasons
+                                games
                                 profileImage {
                                     childImageSharp {
                                         fluid(maxWidth: 200, quality: 90) {

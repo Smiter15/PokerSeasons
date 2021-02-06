@@ -6,12 +6,19 @@ export const useGamesData = () => {
             query {
                 allMarkdownRemark(
                     filter: { fileAbsolutePath: { regex: "/(games)/" } }
+                    sort: { order: ASC, fields: frontmatter___id }
                 ) {
                     edges {
                         node {
                             frontmatter {
                                 id
                                 path
+                                season
+                                seasonGame
+                                players
+                                results
+                                active
+                                complete
                             }
                         }
                     }

@@ -6,6 +6,7 @@ export const useSeasonsData = () => {
             query {
                 allMarkdownRemark(
                     filter: { fileAbsolutePath: { regex: "/(seasons)/" } }
+                    sort: { order: ASC, fields: frontmatter___id }
                 ) {
                     edges {
                         node {
@@ -13,7 +14,9 @@ export const useSeasonsData = () => {
                                 id
                                 path
                                 players
+                                games
                                 currentKitty
+                                active
                             }
                         }
                     }
