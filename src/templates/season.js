@@ -1,6 +1,7 @@
 import React from 'react';
 import { graphql, navigate } from 'gatsby';
 import { AgGridReact } from 'ag-grid-react';
+import Chart from 'react-apexcharts';
 
 import 'ag-grid-community/dist/styles/ag-grid.css';
 import 'ag-grid-community/dist/styles/ag-theme-alpine.css';
@@ -13,7 +14,12 @@ import PlayerRenderer from '../components/grid/PlayerRenderer';
 
 import { useGamesData } from '../data/gamesData';
 import { usePlayersData } from '../data/playersData';
-import { getSeasonGames, getSeasonPlayers } from '../data/utils';
+import { useSnapshotData } from '../data/snapshotData';
+import {
+    removeNodeFrontmatter,
+    getSeasonGames,
+    getSeasonPlayers
+} from '../data/utils';
 
 import { gridOptions } from '../components/grid/utils';
 
@@ -27,6 +33,9 @@ export default function Template({ data }) {
 
     const playersData = usePlayersData();
     const players = getSeasonPlayers(playersData, seasonId);
+
+    const snapshotData = useSnapshotData();
+    const snapshots = removeNodeFrontmatter(snapshotData);
 
     const playerColumns = [
         { field: 'profileImage', cellRendererFramework: ImageRenderer },
@@ -55,6 +64,48 @@ export default function Template({ data }) {
         columnDefs: gameColumns
     };
 
+    const options = {
+        chart: {
+            id: 'Season 1 standings',
+            type: 'area',
+            toolbar: {
+                show: false
+            }
+        },
+        stroke: {
+            curve: 'smooth'
+        },
+        yaxis: {
+            title: {
+                text: 'Season points'
+            }
+        },
+        xaxis: {
+            categories: [1, 2],
+            title: {
+                text: 'Seasons game'
+            }
+        },
+        title: {
+            text: 'Season 1 - running total of points'
+        }
+    };
+
+    const series = [
+        {
+            name: 'Matt Smithson',
+            data: [7, 14]
+        },
+        {
+            name: 'Will Whitell',
+            data: [10, 10]
+        },
+        {
+            name: 'Tom Stell',
+            data: [0, 10]
+        }
+    ];
+
     return (
         <Layout>
             <section className={styles.Season}>
@@ -71,6 +122,15 @@ export default function Template({ data }) {
                             domLayout='autoHeight'
                         />
                     </div>
+                </div>
+                <div className={styles.chart}>
+                    <Chart
+                        options={options}
+                        series={series}
+                        type='area'
+                        width='100%'
+                        // height={320}
+                    />
                 </div>
                 <hr />
                 <div className={styles.stats}>
