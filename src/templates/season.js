@@ -15,9 +15,9 @@ import PlayerRenderer from '../components/grid/PlayerRenderer';
 
 import { useGamesData } from '../data/gamesData';
 import { usePlayersData } from '../data/playersData';
-// import { useSnapshotData } from '../data/snapshotData';
+import { useSnapshotData } from '../data/snapshotData';
 import {
-    // removeNodeFrontmatter,
+    removeNodeFrontmatter,
     getSeasonGames,
     getSeasonPlayers
 } from '../data/utils';
@@ -35,8 +35,8 @@ export default function Template({ data }) {
     const playersData = usePlayersData();
     const players = getSeasonPlayers(playersData, seasonId);
 
-    // const snapshotData = useSnapshotData();
-    // const snapshots = removeNodeFrontmatter(snapshotData);
+    const snapshotData = useSnapshotData();
+    const snapshots = removeNodeFrontmatter(snapshotData);
 
     const playerColumns = [
         { field: 'profileImage', cellRendererFramework: ImageRenderer },
@@ -65,6 +65,28 @@ export default function Template({ data }) {
         columnDefs: gameColumns
     };
 
+    const series = players.map((player) => {
+        const pointsData = snapshots.map((snapshot) => {
+            // for each snapshot get index of result for player
+            const resultIndex = snapshot.results.findIndex(
+                (result) => result === player.id
+            );
+
+            // return array of points for season
+            return snapshot.points[resultIndex]
+                ? snapshot.points[resultIndex]
+                : 0;
+        });
+
+        const cumulativeSum = ((sum) => (value) => (sum += value))(0);
+        const seasonData = pointsData.map(cumulativeSum);
+
+        return {
+            name: player.fullName,
+            data: seasonData
+        };
+    });
+
     const options = {
         chart: {
             type: 'areaspline'
@@ -76,7 +98,9 @@ export default function Template({ data }) {
             title: {
                 text: 'Season games'
             },
-            categories: ['Game 1', 'Game 2'],
+            categories: snapshots.map(
+                (snapshot) => `Game ${snapshot.seasonGame}`
+            ),
             min: 0.5,
             max: 1
         },
@@ -97,20 +121,7 @@ export default function Template({ data }) {
                 fillOpacity: 0.5
             }
         },
-        series: [
-            {
-                name: 'Matt Smithson',
-                data: [7, 14]
-            },
-            {
-                name: 'Will Whitell',
-                data: [10, 10]
-            },
-            {
-                name: 'Tom Stell',
-                data: [0, 10]
-            }
-        ]
+        series
     };
 
     return (

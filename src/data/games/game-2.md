@@ -13,6 +13,10 @@ results:
     - 3
     - 1
 
+points:
+    - 10
+    - 7
+
 # player id
 winner: 3
 

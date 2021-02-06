@@ -14,8 +14,9 @@ export const useSnapshotData = () => {
                                 id
                                 game
                                 season
+                                seasonGame
                                 results
-                                scores
+                                points
                             }
                         }
                     }

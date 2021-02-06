@@ -17,6 +17,7 @@ export const useGamesData = () => {
                                 seasonGame
                                 players
                                 results
+                                points
                                 winner
                                 kitty
                                 complete

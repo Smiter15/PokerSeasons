@@ -26,6 +26,3 @@ export const getGamePlayers = (players, game) =>
 
 export const getPlayer = (players, id) =>
     players.filter((player) => player.id === id)[0];
-
-// SNAPSHOTS
-
