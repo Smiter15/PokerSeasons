@@ -1,7 +1,8 @@
 import React from 'react';
 import { graphql, navigate } from 'gatsby';
 import { AgGridReact } from 'ag-grid-react';
-import Chart from 'react-apexcharts';
+import Highcharts from 'highcharts';
+import HighchartsReact from 'highcharts-react-official';
 
 import 'ag-grid-community/dist/styles/ag-grid.css';
 import 'ag-grid-community/dist/styles/ag-theme-alpine.css';
@@ -14,9 +15,9 @@ import PlayerRenderer from '../components/grid/PlayerRenderer';
 
 import { useGamesData } from '../data/gamesData';
 import { usePlayersData } from '../data/playersData';
-import { useSnapshotData } from '../data/snapshotData';
+// import { useSnapshotData } from '../data/snapshotData';
 import {
-    removeNodeFrontmatter,
+    // removeNodeFrontmatter,
     getSeasonGames,
     getSeasonPlayers
 } from '../data/utils';
@@ -34,8 +35,8 @@ export default function Template({ data }) {
     const playersData = usePlayersData();
     const players = getSeasonPlayers(playersData, seasonId);
 
-    const snapshotData = useSnapshotData();
-    const snapshots = removeNodeFrontmatter(snapshotData);
+    // const snapshotData = useSnapshotData();
+    // const snapshots = removeNodeFrontmatter(snapshotData);
 
     const playerColumns = [
         { field: 'profileImage', cellRendererFramework: ImageRenderer },
@@ -66,45 +67,51 @@ export default function Template({ data }) {
 
     const options = {
         chart: {
-            id: 'Season 1 standings',
-            type: 'area',
-            toolbar: {
-                show: false
-            }
+            type: 'areaspline'
         },
-        stroke: {
-            curve: 'smooth'
+        title: {
+            text: 'Season 1 - Game on game points'
         },
-        yaxis: {
+        xAxis: {
+            title: {
+                text: 'Season games'
+            },
+            categories: ['Game 1', 'Game 2'],
+            min: 0.5,
+            max: 1
+        },
+        yAxis: {
             title: {
                 text: 'Season points'
             }
         },
-        xaxis: {
-            categories: [1, 2],
-            title: {
-                text: 'Seasons game'
+        tooltip: {
+            shared: true,
+            valueSuffix: ' points'
+        },
+        credits: {
+            enabled: false
+        },
+        plotOptions: {
+            areaspline: {
+                fillOpacity: 0.5
             }
         },
-        title: {
-            text: 'Season 1 - running total of points'
-        }
+        series: [
+            {
+                name: 'Matt Smithson',
+                data: [7, 14]
+            },
+            {
+                name: 'Will Whitell',
+                data: [10, 10]
+            },
+            {
+                name: 'Tom Stell',
+                data: [0, 10]
+            }
+        ]
     };
-
-    const series = [
-        {
-            name: 'Matt Smithson',
-            data: [7, 14]
-        },
-        {
-            name: 'Will Whitell',
-            data: [10, 10]
-        },
-        {
-            name: 'Tom Stell',
-            data: [0, 10]
-        }
-    ];
 
     return (
         <Layout>
@@ -124,12 +131,9 @@ export default function Template({ data }) {
                     </div>
                 </div>
                 <div className={styles.chart}>
-                    <Chart
+                    <HighchartsReact
+                        highcharts={Highcharts}
                         options={options}
-                        series={series}
-                        type='area'
-                        width='100%'
-                        // height={320}
                     />
                 </div>
                 <hr />

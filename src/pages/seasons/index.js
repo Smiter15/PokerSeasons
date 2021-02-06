@@ -5,14 +5,10 @@ import styles from '../../css/pages/seasons.module.scss';
 
 import Layout from '../../components/Layout';
 
-import { useGamesData } from '../../data/gamesData';
 import { useSeasonsData } from '../../data/seasonsData';
-import { usePlayersData } from '../../data/playersData';
 
 const Seasons = () => {
-    const gamesData = useGamesData();
     const seasonsData = useSeasonsData();
-    const playersData = usePlayersData();
 
     return (
         <Layout>
