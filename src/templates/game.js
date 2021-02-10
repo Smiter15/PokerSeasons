@@ -20,7 +20,7 @@ export default function Template({ data }) {
         <Layout>
             <section className={styles.Game}>
                 <h1>Game {gameId}</h1>
-                <p>Prize pool: {frontmatter.kitty}</p>
+                <p>First place: ${frontmatter.kitty}</p>
                 <hr />
                 <div className={styles.stats}>
                     <h2>Results</h2>

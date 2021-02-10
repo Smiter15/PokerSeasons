@@ -20,6 +20,7 @@
     "ag-grid-community": "^25.0.1",
     "ag-grid-react": "^25.0.1",
     "classnames": "^2.2.6",
+    "file-saver": "^2.0.5",
     "gatsby": "^2.26.1",
     "gatsby-image": "^2.11.0",
     "gatsby-plugin-manifest": "^2.12.0",

@@ -4,12 +4,16 @@ path: /seasons/1/
 
 players:
     - 1
-    - 2
     - 3
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
 
 games:
     - 1
 
-currentKitty: 50
+currentKitty: TBD
 active: true
 ---

@@ -17,11 +17,11 @@ seasons:
     - 1
 
 games:
-    - 2
+    - 1
 
-careerEarnings: 80
+careerEarnings: 0
 seasonsPlayed: 1
 gamesPlayed: 1
-currentSeasonPosition: 3
-currentSeasonPoints: 10
+currentSeasonPosition: 1
+currentSeasonPoints: 1
 ---

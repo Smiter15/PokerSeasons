@@ -5,7 +5,7 @@ fullName: Matt Smithson
 nickName: Matt "Billy big bollocks" Smithson
 profileImage: ../../images/players/matt-smithson.png
 joinedDate: 2021-02-05T14:30:35.701Z
-occupation: Web developer
+occupation: Buggy website builder
 role: Chairman
 blurb: >-
     Matt was once sponsored by Plymouth University to represent them amongst 9 other elite players in the National Student Tournament, hosted by Grovesnor casino in Bristol. He did shit.
@@ -19,11 +19,10 @@ seasons:
 
 games:
     - 1
-    - 2
 
-careerEarnings: 120
+careerEarnings: 22.05
 seasonsPlayed: 1
-gamesPlayed: 2
+gamesPlayed: 1
 currentSeasonPosition: 1
-currentSeasonPoints: 14
+currentSeasonPoints: 7
 ---

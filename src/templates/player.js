@@ -48,8 +48,6 @@ export default function Template({ data }) {
                         <li>Career earnings: £{frontmatter.careerEarnings}</li>
                         <li>Seasons played: {frontmatter.seasonsPlayed}</li>
                         <li>Games played: {frontmatter.gamesPlayed}</li>
-                        <li>Times cashed: 12 (100%)</li>
-                        <li>Times knocked Tommy out: 2</li>
                     </ul>
                 </div>
             </section>
