@@ -107,9 +107,9 @@ export default function Template({ data }) {
             },
             categories: snapshots.map(
                 (snapshot) => `Game ${snapshot.seasonGame}`
-            ),
-            min: 0.5,
-            max: 1
+            )
+            // min: 0.5,
+            // max: 1
         },
         yAxis: {
             title: {
