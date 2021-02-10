@@ -29,10 +29,10 @@ export default function Template({ data }) {
     const { frontmatter } = data.markdownRemark;
     const seasonId = frontmatter.id;
 
-    const path = '/test/';
-    var blob = new Blob([`---\npath: ${path}\n---`], {
-        type: 'text/plain;charset=utf-8'
-    });
+    // const path = '/test/';
+    // var blob = new Blob([`---\npath: ${path}\n---`], {
+    //     type: 'text/plain;charset=utf-8'
+    // });
     // saveAs(blob, 'test.md');
 
     // get data
