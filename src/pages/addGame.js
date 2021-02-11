@@ -9,54 +9,54 @@ import { useGamesData } from '../data/gamesData';
 
 const AddGame = () => {
     const gamesData = useGamesData();
-    console.log('g', gamesData);
+    //     console.log('g', gamesData);
 
-    const newGame = `---
-id: 2
-path: /games/2/
-season: 1
-seasonGame: 2
+    //     const newGame = `---
+    // id: 2
+    // path: /games/2/
+    // season: 1
+    // seasonGame: 2
 
-# player ids
-players:
-    - 1
-    - 3
-    - 4
-    - 5
-    - 6
-    - 7
-    - 8
+    // # player ids
+    // players:
+    //     - 1
+    //     - 3
+    //     - 4
+    //     - 5
+    //     - 6
+    //     - 7
+    //     - 8
 
-# player ids in order of resutls
-results:
-    - 1
-    - 4
-    - 7
-    - 8
-    - 6
-    - 3
-    - 5
+    // # player ids in order of resutls
+    // results:
+    //     - 1
+    //     - 4
+    //     - 7
+    //     - 8
+    //     - 6
+    //     - 3
+    //     - 5
 
-points:
-    - 7
-    - 5.6
-    - 4.2
-    - 2.8
-    - 1.4
-    - 1
-    - 1
+    // points:
+    //     - 7
+    //     - 5.6
+    //     - 4.2
+    //     - 2.8
+    //     - 1.4
+    //     - 1
+    //     - 1
 
-# player id
-winner: 1
+    // # player id
+    // winner: 1
 
-kitty: 22.05
-complete: true
----
-`;
+    // kitty: 22.05
+    // complete: true
+    // ---
+    // `;
 
-    const blob = new Blob([newGame], {
-        type: 'text/plain;charset=utf-8'
-    });
+    //     const blob = new Blob([newGame], {
+    //         type: 'text/plain;charset=utf-8'
+    //     });
     // saveAs(blob, '2-game.md');
 
     return (
