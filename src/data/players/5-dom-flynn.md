@@ -5,7 +5,7 @@ fullName: Dom Flynn
 nickName: Dom "The bean" Flynn
 profileImage: ../../images/players/dom-flynn.png
 joinedDate: 2021-02-10T17:46:35.701Z
-occupation: Software seller
+occupation: Bean seller
 blurb: >-
     Only plays when the kitty is "worth his time". Shame he never cashes out.
     <br />

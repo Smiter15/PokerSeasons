@@ -24,14 +24,10 @@ const HomePage = () => {
                     player) x 10
                 </p>
                 <p>
-                    <iframe
+                    <img
+                        src='https://media.giphy.com/media/idKeY3nvmdIsM/giphy-downsized.gif'
                         style={{ borderRadius: 16 }}
-                        src='https://giphy.com/embed/DHqth0hVQoIzS'
-                        width='480'
-                        height='206'
-                        frameBorder='0'
-                        class='giphy-embed'
-                    ></iframe>
+                    />
                 </p>
                 <p>
                     You can see it{' '}

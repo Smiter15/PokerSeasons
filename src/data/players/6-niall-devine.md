@@ -2,10 +2,10 @@
 id: 6
 path: /players/niall-devine/
 fullName: Niall Devine
-nickName: Niall "Calls anything" Devine
+nickName: Niall "The mysterious" Devine
 profileImage: ../../images/players/niall-devine.png
 joinedDate: 2021-02-10T18:07:35.701Z
-occupation: Drug pusher
+occupation: Big pharma
 blurb: >-
     Super keen for about half hour and then just sees what happens 🤷‍
     <br />
