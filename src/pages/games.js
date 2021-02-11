@@ -1,16 +1,16 @@
 import React from 'react';
 import { Link } from 'gatsby';
 
-import styles from '../../css/pages/games.module.scss';
+import styles from '../css/pages/games.module.scss';
 
-import Layout from '../../components/Layout';
+import Layout from '../components/Layout';
 
-import { useGamesData } from '../../data/gamesData';
+import { useGamesData } from '../data/gamesData';
 
 const Games = () => {
-    const gamesData = useGamesData();
+    const games = useGamesData();
 
-    const game1 = gamesData[0].node.frontmatter;
+    const lastGame = games.slice(-1)[0];
 
     return (
         <Layout>
@@ -19,7 +19,7 @@ const Games = () => {
                 <p>Game was played on 10th Feb</p>
                 <div className={styles.active}>
                     <h2>Last game</h2>
-                    <Link to={game1.path}>Game 1</Link>
+                    <Link to={lastGame.path}>Game {lastGame.id}</Link>
                 </div>
                 <hr />
                 <h3>Previous games</h3>

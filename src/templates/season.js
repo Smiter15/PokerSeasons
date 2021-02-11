@@ -3,7 +3,6 @@ import { graphql, navigate } from 'gatsby';
 import { AgGridReact } from 'ag-grid-react';
 import Highcharts from 'highcharts';
 import HighchartsReact from 'highcharts-react-official';
-import { saveAs } from 'file-saver';
 
 import 'ag-grid-community/dist/styles/ag-grid.css';
 import 'ag-grid-community/dist/styles/ag-theme-alpine.css';
@@ -16,12 +15,7 @@ import PlayerRenderer from '../components/grid/PlayerRenderer';
 
 import { useGamesData } from '../data/gamesData';
 import { usePlayersData } from '../data/playersData';
-import { useSnapshotData } from '../data/snapshotData';
-import {
-    removeNodeFrontmatter,
-    getSeasonGames,
-    getSeasonPlayers
-} from '../data/utils';
+import { getSeasonGames, getSeasonPlayers } from '../data/utils';
 
 import { gridOptions } from '../components/grid/utils';
 
@@ -29,21 +23,12 @@ export default function Template({ data }) {
     const { frontmatter } = data.markdownRemark;
     const seasonId = frontmatter.id;
 
-    // const path = '/test/';
-    // var blob = new Blob([`---\npath: ${path}\n---`], {
-    //     type: 'text/plain;charset=utf-8'
-    // });
-    // saveAs(blob, 'test.md');
-
     // get data
     const gamesData = useGamesData();
     const games = getSeasonGames(gamesData, seasonId);
 
     const playersData = usePlayersData();
     const players = getSeasonPlayers(playersData, seasonId);
-
-    const snapshotData = useSnapshotData();
-    const snapshots = removeNodeFrontmatter(snapshotData);
 
     const playerColumns = [
         { field: 'profileImage', cellRendererFramework: ImageRenderer },
@@ -73,20 +58,18 @@ export default function Template({ data }) {
     };
 
     const series = players.map((player) => {
-        const pointsData = snapshots.map((snapshot) => {
-            // for each snapshot get index of result for player
-            const resultIndex = snapshot.results.findIndex(
+        const pointsData = games.map((game) => {
+            // for each game get index of result for player
+            const resultIndex = game.results.findIndex(
                 (result) => result === player.id
             );
 
             // return array of points for season
-            return snapshot.points[resultIndex]
-                ? snapshot.points[resultIndex]
-                : 0;
+            return game.points[resultIndex] ? game.points[resultIndex] : 0;
         });
 
-        const cumulativeSum = ((sum) => (value) => (sum += value))(0);
-        const seasonData = pointsData.map(cumulativeSum);
+        const cumulativePoints = ((sum) => (value) => (sum += value))(0);
+        const seasonData = pointsData.map(cumulativePoints);
 
         return {
             name: player.fullName,
@@ -105,9 +88,7 @@ export default function Template({ data }) {
             title: {
                 text: 'Season games'
             },
-            categories: snapshots.map(
-                (snapshot) => `Game ${snapshot.seasonGame}`
-            )
+            categories: games.map((game) => `Game ${game.seasonGame}`)
             // min: 0.5,
             // max: 1
         },

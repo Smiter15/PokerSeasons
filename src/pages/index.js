@@ -4,7 +4,6 @@ import styles from '../css/pages/index.module.scss';
 
 import Layout from '../components/Layout';
 
-// markup
 const HomePage = () => {
     return (
         <Layout>
@@ -17,8 +16,22 @@ const HomePage = () => {
                 </p>
                 <p>
                     Lew helped create a formula for calulating points that
-                    scales as there are more playes. You will alwasy receive at
-                    least 1 point for turning up.
+                    scales as there are more playes. The higher you finish the
+                    more points you get relative to the other players.
+                </p>
+                <p>
+                    <b>Formula</b>: Square root(Number of players/position of
+                    player) x 10
+                </p>
+                <p>
+                    <iframe
+                        style={{ borderRadius: 16 }}
+                        src='https://giphy.com/embed/DHqth0hVQoIzS'
+                        width='480'
+                        height='206'
+                        frameBorder='0'
+                        class='giphy-embed'
+                    ></iframe>
                 </p>
                 <p>
                     You can see it{' '}

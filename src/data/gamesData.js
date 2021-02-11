@@ -1,5 +1,7 @@
 import { useStaticQuery, graphql } from 'gatsby';
 
+import { removeNodeFrontmatter } from './utils';
+
 export const useGamesData = () => {
     const data = useStaticQuery(
         graphql`
@@ -29,5 +31,5 @@ export const useGamesData = () => {
         `
     );
 
-    return data.allMarkdownRemark.edges;
+    return removeNodeFrontmatter(data.allMarkdownRemark.edges);
 };

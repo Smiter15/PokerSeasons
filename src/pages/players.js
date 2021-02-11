@@ -5,19 +5,17 @@ import { AgGridReact } from 'ag-grid-react';
 import 'ag-grid-community/dist/styles/ag-grid.css';
 import 'ag-grid-community/dist/styles/ag-theme-alpine.css';
 
-import styles from '../../css/pages/players.module.scss';
+import styles from '../css/pages/players.module.scss';
 
-import Layout from '../../components/Layout';
-import ImageRenderer from '../../components/grid/ImageRenderer';
+import Layout from '../components/Layout';
+import ImageRenderer from '../components/grid/ImageRenderer';
 
-import { usePlayersData } from '../../data/playersData';
-import { removeNodeFrontmatter } from '../../data/utils';
+import { usePlayersData } from '../data/playersData';
 
-import { gridOptions } from '../../components/grid/utils';
+import { gridOptions } from '../components/grid/utils';
 
 const Players = () => {
-    const playersData = usePlayersData();
-    const players = removeNodeFrontmatter(playersData);
+    const players = usePlayersData();
 
     const playerColumns = [
         { field: 'profileImage', cellRendererFramework: ImageRenderer },
