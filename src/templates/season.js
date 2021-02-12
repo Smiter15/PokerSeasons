@@ -96,7 +96,8 @@ export default function Template({ data }) {
         },
         tooltip: {
             shared: true,
-            valueSuffix: ' points'
+            valueSuffix: ' points',
+            valueDecimals: 2
         },
         credits: {
             enabled: false
