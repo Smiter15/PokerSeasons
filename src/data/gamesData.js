@@ -17,6 +17,7 @@ export const useGamesData = () => {
                                 path
                                 season
                                 seasonGame
+                                date
                                 results
                                 points
                                 winner

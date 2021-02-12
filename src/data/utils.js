@@ -19,7 +19,7 @@ export const getSeasonPlayers = (players, season) =>
 
 // GAMES
 
-export const getGame = (games, id) => games.filter((game) => game.id === id);
+export const getGame = (games, id) => games.filter((game) => game.id === id)[0];
 
 // PLAYERS
 

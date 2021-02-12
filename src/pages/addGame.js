@@ -38,6 +38,12 @@ const AddGame = () => {
     );
     const [selectedPlayers, setSelectedPlayers] = useState([]);
 
+    const [payout1, setpayout1] = useState(0);
+    const [payout2, setpayout2] = useState(0);
+    const [payout3, setpayout3] = useState(0);
+
+    // functions
+
     const handleSelectPlayer = (player) => {
         setSelectedPlayers([...selectedPlayers, player]);
         // remove selected player from options list
@@ -62,7 +68,16 @@ const AddGame = () => {
         // update players
         selectedPlayers.forEach((player, i) => {
             const points = getPoints(selectedPlayers.length, i + 1);
-            updatePlayer(getPlayer(players, player.value), newGameId, points);
+            const prize =
+                [parseFloat(payout1), parseFloat(payout2), parseFloat(payout3)][
+                    i
+                ] || 0;
+            updatePlayer(
+                getPlayer(players, player.value),
+                newGameId,
+                points,
+                prize
+            );
         });
         // create game
         const blob = new Blob(
@@ -71,7 +86,12 @@ const AddGame = () => {
                     newGameId,
                     currentSeason.id,
                     seasonGameCount,
-                    selectedPlayers
+                    selectedPlayers,
+                    [
+                        parseFloat(payout1),
+                        parseFloat(payout2),
+                        parseFloat(payout3)
+                    ]
                 )
             ],
             {
@@ -107,8 +127,26 @@ const AddGame = () => {
                     })}
                 </ul>
 
-                <h3>Prizes</h3>
-                <p>TODO</p>
+                <h3>Payout</h3>
+                <label htmlFor='first'>1st</label>
+                <input
+                    id='first'
+                    onChange={(e) => setpayout1(e.target.value)}
+                />
+                <br />
+                <label htmlFor='second'>2nd</label>
+                <input
+                    id='second'
+                    onChange={(e) => setpayout2(e.target.value)}
+                />
+                <br />
+                <label htmlFor='third'>3rd</label>
+                <input
+                    id='third'
+                    onChange={(e) => setpayout3(e.target.value)}
+                />
+                <br />
+                <br />
 
                 <button onClick={addGame}>Add game</button>
             </section>

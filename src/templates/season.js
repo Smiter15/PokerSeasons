@@ -61,7 +61,7 @@ export default function Template({ data }) {
             );
 
             // return array of points for season
-            return game.points[resultIndex] ? game.points[resultIndex] : 0;
+            return game.points[resultIndex] || 0;
         });
 
         const cumulativePoints = ((sum) => (value) => (sum += value))(0);

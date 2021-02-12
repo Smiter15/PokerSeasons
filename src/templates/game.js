@@ -6,18 +6,20 @@ import styles from '../css/templates/game.module.scss';
 
 import Layout from '../components/Layout';
 import ImageRenderer from '../components/grid/ImageRenderer';
-import PointsRenderer from '../components/grid/PointsRenderer';
+import pointsRenderer from '../components/grid/pointsRenderer';
 
-import { getOrdinal, getGamePlayers } from '../data/utils';
+import { getOrdinal, getGamePlayers, getGame } from '../data/utils';
 import { usePlayersData } from '../data/playersData';
 
 import { gridOptions } from '../components/grid/utils';
+import { useGamesData } from '../data/gamesData';
 
 export default function Template({ data }) {
     const { frontmatter } = data.markdownRemark;
     const { id: gameId, payout } = frontmatter;
 
     // data
+    // const game = getGame(useGamesData(), gameId);
     const players = getGamePlayers(usePlayersData(), gameId);
 
     const playerColumns = [
@@ -25,8 +27,12 @@ export default function Template({ data }) {
         { field: 'fullName' },
         {
             field: 'points',
-            cellRendererFramework: PointsRenderer,
+            cellRendererFramework: pointsRenderer,
             cellRendererParams: { game: frontmatter }
+            // valueGetter: (param) => {
+            //     console.log('in', param, pointsRenderer(param, game));
+            //     return pointsRenderer(param, game);
+            // }
         },
         { field: 'currentSeasonPoints' }
     ];
@@ -40,6 +46,7 @@ export default function Template({ data }) {
         <Layout>
             <section className={styles.Game}>
                 <h1>Game {gameId}</h1>
+                <p>Played on {frontmatter.date}</p>
                 <h2>Payout</h2>
                 <ul>
                     {payout.map((prize, i) => (
@@ -74,6 +81,7 @@ export const pageQuery = graphql`
                 path
                 season
                 seasonGame
+                date
                 players
                 results
                 points

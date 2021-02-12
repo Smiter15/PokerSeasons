@@ -1,4 +1,4 @@
-const PointsRenderer = (column) => {
+const pointsRenderer = (column) => {
     const playerId = column.data.id;
     const game = column.game;
     const playerResult = game.results.filter(
@@ -10,4 +10,4 @@ const PointsRenderer = (column) => {
     return points;
 };
 
-export default PointsRenderer;
+export default pointsRenderer;
