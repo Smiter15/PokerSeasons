@@ -61,7 +61,7 @@ export default function Template({ data }) {
                 (result) => result === player.id
             );
 
-            // return array of points for season
+            // return array of points for season, return 0 if player did not play that game
             return game.points[resultIndex] || 0;
         });
 
@@ -86,8 +86,6 @@ export default function Template({ data }) {
                 text: 'Season games'
             },
             categories: games.map((game) => `After ${game.seasonGame} games`)
-            // min: 0.5,
-            // max: 1
         },
         yAxis: {
             title: {
@@ -104,7 +102,7 @@ export default function Template({ data }) {
         },
         plotOptions: {
             areaspline: {
-                fillOpacity: 0.5
+                fillOpacity: 0.3
             }
         },
         series

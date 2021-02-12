@@ -23,6 +23,7 @@ const Games = () => {
 
     const gameColumns = [
         { field: 'id' },
+        { field: 'season' },
         { field: 'seasonGame' },
         {
             field: 'winner',

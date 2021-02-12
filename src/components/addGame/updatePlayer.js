@@ -16,8 +16,10 @@ export const updatePlayer = (player, gameId, points, prize) => {
     );
 };
 
-const generateGamesList = (player, gameId) =>
-    renderArrayData([...player.games, gameId]);
+const generateGamesList = (player, gameId) => {
+    const games = player.games || [gameId];
+    return renderArrayData([...games, gameId]);
+};
 
 const generateMD = (player, gameId, points, prize) => {
     return `---
