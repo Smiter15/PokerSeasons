@@ -6,8 +6,8 @@ const renderArrayData = (data) =>
         .join('')
         .trim();
 
-export const updatePlayer = (player, gameId) => {
-    const blob = new Blob([generateMD(player, gameId)], {
+export const updatePlayer = (player, gameId, points) => {
+    const blob = new Blob([generateMD(player, gameId, points)], {
         type: 'text/plain;charset=utf-8'
     });
     saveAs(
@@ -19,7 +19,7 @@ export const updatePlayer = (player, gameId) => {
 const generateGamesList = (player, gameId) =>
     renderArrayData([...player.games, gameId]);
 
-const generateMD = (player, gameId) => {
+const generateMD = (player, gameId, points) => {
     return `---
 id: ${player.id}
 path: /players/${player.fullName.replace(/\s+/g, '-').toLowerCase()}/
@@ -46,8 +46,7 @@ ${generateGamesList(player, gameId)}
 careerEarnings: 22.05
 seasonsPlayed: 1
 gamesPlayed: ${player.gamesPlayed + 1}
-currentSeasonPosition: 1
-currentSeasonPoints: 24.46
+currentSeasonPoints: ${player.currentSeasonPoints + points}
 ---
 `;
 };

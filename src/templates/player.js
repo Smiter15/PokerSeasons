@@ -82,7 +82,6 @@ export const pageQuery = graphql`
                 careerEarnings
                 seasonsPlayed
                 gamesPlayed
-                currentSeasonPosition
                 currentSeasonPoints
             }
         }

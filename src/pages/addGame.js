@@ -60,8 +60,9 @@ const AddGame = () => {
 
     const addGame = () => {
         // update players
-        selectedPlayers.forEach((player) => {
-            updatePlayer(getPlayer(players, player.value), newGameId);
+        selectedPlayers.forEach((player, i) => {
+            const points = getPoints(selectedPlayers.length, i + 1);
+            updatePlayer(getPlayer(players, player.value), newGameId, points);
         });
         // create game
         const blob = new Blob(

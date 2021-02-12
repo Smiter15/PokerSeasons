@@ -39,7 +39,6 @@ export const usePlayersData = () => {
                                 careerEarnings
                                 seasonsPlayed
                                 gamesPlayed
-                                currentSeasonPosition
                                 currentSeasonPoints
                             }
                         }
