@@ -26,6 +26,7 @@ const HomePage = () => {
                 <p>
                     <img
                         src='https://media.giphy.com/media/idKeY3nvmdIsM/giphy-downsized.gif'
+                        alt='What is math'
                         style={{ borderRadius: 16 }}
                     />
                 </p>
@@ -34,10 +35,11 @@ const HomePage = () => {
                     <a
                         href='https://docs.google.com/spreadsheets/d/1RpjQhEpLUrGxo2SMLNukIej3RCxWOJlDYTte0GntRm0'
                         target='_blank'
+                        rel='noreferrer'
                     >
                         here
                     </a>
-                    . Please don't change the formula!
+                    . Check out row 60. Please don't change the formula!
                 </p>
             </section>
         </Layout>

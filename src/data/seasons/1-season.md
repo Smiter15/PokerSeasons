@@ -16,4 +16,5 @@ games:
 
 currentKitty: TBD
 active: true
+complete: false
 ---

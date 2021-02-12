@@ -1,8 +1,11 @@
 ---
 id: 2
 path: /players/will-whitell/
+firstName: Will
+lastName: Whitell
 fullName: Will Whitell
-nickName: Will "Fishing for Tommy" Whitell
+nickName: Fishing for Tommy
+fullNickName: Will "Fishing for Tommy" Whitell
 profileImage: ../../images/players/will-whitell.png
 joinedDate: 2021-02-05T14:30:35.701Z
 occupation: Something about japanese knot weed

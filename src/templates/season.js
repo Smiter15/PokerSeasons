@@ -24,11 +24,8 @@ export default function Template({ data }) {
     const seasonId = frontmatter.id;
 
     // get data
-    const gamesData = useGamesData();
-    const games = getSeasonGames(gamesData, seasonId);
-
-    const playersData = usePlayersData();
-    const players = getSeasonPlayers(playersData, seasonId);
+    const games = getSeasonGames(useGamesData(), seasonId);
+    const players = getSeasonPlayers(usePlayersData(), seasonId);
 
     const playerColumns = [
         { field: 'profileImage', cellRendererFramework: ImageRenderer },
@@ -44,7 +41,6 @@ export default function Template({ data }) {
 
     const gameColumns = [
         { field: 'seasonGame' },
-        { field: 'kitty' },
         {
             field: 'winner',
             cellRendererFramework: PlayerRenderer,
@@ -88,7 +84,7 @@ export default function Template({ data }) {
             title: {
                 text: 'Season games'
             },
-            categories: games.map((game) => `Game ${game.seasonGame}`)
+            categories: games.map((game) => `After ${game.seasonGame} games`)
             // min: 0.5,
             // max: 1
         },

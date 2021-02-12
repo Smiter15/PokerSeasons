@@ -1,40 +1,65 @@
 import React from 'react';
-import { graphql, Link } from 'gatsby';
+import { graphql, navigate } from 'gatsby';
+import { AgGridReact } from 'ag-grid-react';
 
 import styles from '../css/templates/game.module.scss';
 
 import Layout from '../components/Layout';
+import ImageRenderer from '../components/grid/ImageRenderer';
+import PointsRenderer from '../components/grid/PointsRenderer';
 
-import { getGamePlayers, getPlayer } from '../data/utils';
+import { getOrdinal, getGamePlayers } from '../data/utils';
 import { usePlayersData } from '../data/playersData';
+
+import { gridOptions } from '../components/grid/utils';
 
 export default function Template({ data }) {
     const { frontmatter } = data.markdownRemark;
-    const gameId = frontmatter.id;
-    const results = frontmatter.results;
+    const { id: gameId, payout } = frontmatter;
 
-    const playersData = usePlayersData();
-    const players = getGamePlayers(playersData, gameId);
+    // data
+    const players = getGamePlayers(usePlayersData(), gameId);
+
+    const playerColumns = [
+        { field: 'profileImage', cellRendererFramework: ImageRenderer },
+        { field: 'fullName' },
+        {
+            field: 'points',
+            cellRendererFramework: PointsRenderer,
+            cellRendererParams: { game: frontmatter }
+        },
+        { field: 'currentSeasonPoints' }
+    ];
+
+    const playerGrid = {
+        ...gridOptions,
+        columnDefs: playerColumns
+    };
 
     return (
         <Layout>
             <section className={styles.Game}>
                 <h1>Game {gameId}</h1>
-                <p>First place: ${frontmatter.kitty}</p>
+                <h2>Payout</h2>
+                <ul>
+                    {payout.map((prize, i) => (
+                        <li key={i}>
+                            {i + 1}
+                            {getOrdinal(i + 1)} - ${prize.toFixed(2)}
+                        </li>
+                    ))}
+                </ul>
                 <hr />
                 <div className={styles.stats}>
-                    <h2>Results</h2>
-                    {results.map((result, i) => {
-                        const player = getPlayer(players, result);
-
-                        return (
-                            <Link key={result} to={player.path}>
-                                <p>
-                                    {i + 1} - {player.fullName}
-                                </p>
-                            </Link>
-                        );
-                    })}
+                    <h3>Results</h3>
+                    <div className='ag-theme-alpine'>
+                        <AgGridReact
+                            gridOptions={playerGrid}
+                            rowData={players}
+                            onRowClicked={(row) => navigate(row.data.path)}
+                            domLayout='autoHeight'
+                        />
+                    </div>
                 </div>
             </section>
         </Layout>
@@ -51,10 +76,9 @@ export const pageQuery = graphql`
                 seasonGame
                 players
                 results
-
+                points
+                payout
                 winner
-                kitty
-                complete
             }
         }
     }

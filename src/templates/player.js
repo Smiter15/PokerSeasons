@@ -21,7 +21,7 @@ export default function Template({ data }) {
                     <div className={styles.about}>
                         <h1>{frontmatter.fullName}</h1>
                         <p>
-                            <b>Known as:</b> {frontmatter.nickName}
+                            <b>Known as:</b> {frontmatter.fullNickName}
                             <br />
                             <b>Joined:</b> {frontmatter.joinedDate}
                             <br />
@@ -59,12 +59,13 @@ export const pageQuery = graphql`
     query($path: String!) {
         markdownRemark(frontmatter: { path: { eq: $path } }) {
             frontmatter {
+                id
+                path
+                firstName
+                lastName
                 fullName
                 nickName
-                joinedDate
-                occupation
-                role
-                blurb
+                fullNickName
                 profileImage {
                     childImageSharp {
                         fluid(maxWidth: 200, quality: 90) {
@@ -72,6 +73,12 @@ export const pageQuery = graphql`
                         }
                     }
                 }
+                joinedDate
+                occupation
+                role
+                blurb
+                seasons
+                games
                 careerEarnings
                 seasonsPlayed
                 gamesPlayed

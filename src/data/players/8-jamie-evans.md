@@ -1,8 +1,11 @@
 ---
 id: 8
 path: /players/jamie-evans/
+firstName: Jamie
+lastName: Evans
 fullName: Jamie Evans
-nickName: Jamie "Condom head" Evans
+nickName: Condom head
+fullNickName: Jamie "Condom head" Evans
 profileImage: ../../images/players/jamie-evans.png
 joinedDate: 2021-02-10T22:13:35.701Z
 occupation: Plymouth bum

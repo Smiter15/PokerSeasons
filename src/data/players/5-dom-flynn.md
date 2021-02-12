@@ -1,8 +1,11 @@
 ---
 id: 5
 path: /players/dom-flynn/
+firstName: Dom
+lastName: Flynn
 fullName: Dom Flynn
-nickName: Dom "The bean" Flynn
+nickName: The bean
+fullNickName: Dom "The bean" Flynn
 profileImage: ../../images/players/dom-flynn.png
 joinedDate: 2021-02-10T17:46:35.701Z
 occupation: Bean seller

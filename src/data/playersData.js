@@ -18,14 +18,11 @@ export const usePlayersData = () => {
                             frontmatter {
                                 id
                                 path
+                                firstName
+                                lastName
                                 fullName
                                 nickName
-                                joinedDate
-                                occupation
-                                role
-                                blurb
-                                seasons
-                                games
+                                fullNickName
                                 profileImage {
                                     childImageSharp {
                                         fluid(maxWidth: 200, quality: 90) {
@@ -33,6 +30,12 @@ export const usePlayersData = () => {
                                         }
                                     }
                                 }
+                                joinedDate
+                                occupation
+                                role
+                                blurb
+                                seasons
+                                games
                                 careerEarnings
                                 seasonsPlayed
                                 gamesPlayed

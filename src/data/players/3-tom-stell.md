@@ -1,8 +1,11 @@
 ---
 id: 3
 path: /players/tom-stell/
+firstName: Tom
+lastName: Stell
 fullName: Tom Stell
-nickName: Tom "The thumber" Stell
+nickName: The thumber
+fullNickName: Tom "The thumber" Stell
 profileImage: ../../images/players/tom-stell.png
 joinedDate: 2021-02-05T21:11:35.701Z
 occupation: Hand model

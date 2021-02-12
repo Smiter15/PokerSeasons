@@ -4,16 +4,6 @@ path: /games/1/
 season: 1
 seasonGame: 1
 
-# player ids
-players:
-    - 1
-    - 3
-    - 4
-    - 5
-    - 6
-    - 7
-    - 8
-
 # player ids in order of resutls
 results:
     - 1
@@ -24,6 +14,7 @@ results:
     - 3
     - 5
 
+# points for each position
 points:
     - 24.46
     - 18.71
@@ -33,9 +24,10 @@ points:
     - 10.80
     - 10
 
+payout:
+    - 22.05
+    - 9.45
+
 # player id
 winner: 1
-
-kitty: 22.05
-complete: true
 ---

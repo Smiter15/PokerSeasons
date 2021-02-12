@@ -2,4 +2,10 @@
 
 .AddGame {
     @include page;
+
+    .listItem {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
 }

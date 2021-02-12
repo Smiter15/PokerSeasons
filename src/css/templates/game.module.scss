@@ -2,4 +2,8 @@
 
 .Game {
     @include page;
+    ul {
+        list-style: none;
+        margin: 0;
+    }
 }

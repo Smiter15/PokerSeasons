@@ -1,8 +1,11 @@
 ---
 id: 7
 path: /players/jodi-devine/
+firstName: Jodi
+lastName: Devine
 fullName: Jodi Devine
-nickName: Jodi "Short stuff" Devine
+nickName: Short stuff
+fullNickName: Jodi "Short stuff" Devine
 profileImage: ../../images/players/jodi-devine.png
 joinedDate: 2021-02-10T18:07:35.701Z
 occupation: Matt's carer
