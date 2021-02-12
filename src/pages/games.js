@@ -1,31 +1,59 @@
 import React from 'react';
-import { Link } from 'gatsby';
+import { Link, navigate } from 'gatsby';
+import { AgGridReact } from 'ag-grid-react';
+
+import 'ag-grid-community/dist/styles/ag-grid.css';
+import 'ag-grid-community/dist/styles/ag-theme-alpine.css';
 
 import styles from '../css/pages/games.module.scss';
 
 import Layout from '../components/Layout';
+import PlayerRenderer from '../components/grid/PlayerRenderer';
 
 import { useGamesData } from '../data/gamesData';
+import { usePlayersData } from '../data/playersData';
+
+import { gridOptions } from '../components/grid/utils';
 
 const Games = () => {
     const games = useGamesData();
+    const players = usePlayersData();
 
     const lastGame = games.slice(-1)[0];
+
+    const gameColumns = [
+        { field: 'id' },
+        { field: 'seasonGame' },
+        {
+            field: 'winner',
+            cellRendererFramework: PlayerRenderer,
+            cellRendererParams: { players }
+        }
+    ];
+
+    const gameGrid = {
+        ...gridOptions,
+        columnDefs: gameColumns
+    };
 
     return (
         <Layout>
             <section className={styles.Games}>
                 <h1>Games</h1>
-                <p>Game was played on 10th Feb</p>
                 <div className={styles.active}>
                     <h2>Last game</h2>
                     <Link to={lastGame.path}>Game {lastGame.id}</Link>
                 </div>
                 <hr />
                 <h3>Previous games</h3>
-                <p>...</p>
-                <p>...</p>
-                <p>...</p>
+                <div className='ag-theme-alpine'>
+                    <AgGridReact
+                        gridOptions={gameGrid}
+                        rowData={games}
+                        onRowClicked={(row) => navigate(row.data.path)}
+                        domLayout='autoHeight'
+                    />
+                </div>
             </section>
         </Layout>
     );

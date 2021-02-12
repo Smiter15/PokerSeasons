@@ -40,6 +40,7 @@ export default function Template({ data }) {
     };
 
     const gameColumns = [
+        { field: 'id' },
         { field: 'seasonGame' },
         {
             field: 'winner',

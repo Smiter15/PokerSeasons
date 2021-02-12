@@ -43,10 +43,10 @@ seasons:
 games:
 ${generateGamesList(player, gameId)}
 
-careerEarnings: ${player.careerEarnings + prize}
+careerEarnings: ${(player.careerEarnings + prize).toFixed(2)}
 seasonsPlayed: 1
 gamesPlayed: ${player.gamesPlayed + 1}
-currentSeasonPoints: ${player.currentSeasonPoints + points}
+currentSeasonPoints: ${(player.currentSeasonPoints + points).toFixed(2)}
 ---
 `;
 };
