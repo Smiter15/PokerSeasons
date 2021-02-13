@@ -1,6 +1,6 @@
 import { getPlayer } from '../../data/utils';
 
-const PlayerRenderer = (column) =>
+const WinnerRenderer = (column) =>
     getPlayer(column.players, column.data.winner).fullName;
 
-export default PlayerRenderer;
+export default WinnerRenderer;

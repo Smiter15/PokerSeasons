@@ -11,7 +11,7 @@ import styles from '../css/templates/season.module.scss';
 
 import Layout from '../components/Layout';
 import ImageRenderer from '../components/grid/ImageRenderer';
-import PlayerRenderer from '../components/grid/PlayerRenderer';
+import WinnerRenderer from '../components/grid/WinnerRenderer';
 
 import { useGamesData } from '../data/gamesData';
 import { usePlayersData } from '../data/playersData';
@@ -36,7 +36,17 @@ export default function Template({ data }) {
 
     const playerGrid = {
         ...gridOptions,
-        columnDefs: playerColumns
+        columnDefs: playerColumns,
+        onGridReady: (e) => {
+            e.columnApi.applyColumnState({
+                state: [
+                    {
+                        colId: 'currentSeasonPoints',
+                        sort: 'desc'
+                    }
+                ]
+            });
+        }
     };
 
     const gameColumns = [
@@ -44,7 +54,7 @@ export default function Template({ data }) {
         { field: 'seasonGame' },
         {
             field: 'winner',
-            cellRendererFramework: PlayerRenderer,
+            cellRendererFramework: WinnerRenderer,
             cellRendererParams: { players }
         }
     ];
@@ -132,16 +142,14 @@ export default function Template({ data }) {
                     />
                 </div>
                 <hr />
-                <div className={styles.stats}>
-                    <h2>Games</h2>
-                    <div className='ag-theme-alpine'>
-                        <AgGridReact
-                            gridOptions={gameGrid}
-                            rowData={games}
-                            onRowClicked={(row) => navigate(row.data.path)}
-                            domLayout='autoHeight'
-                        />
-                    </div>
+                <h2>Games</h2>
+                <div className='ag-theme-alpine'>
+                    <AgGridReact
+                        gridOptions={gameGrid}
+                        rowData={games}
+                        onRowClicked={(row) => navigate(row.data.path)}
+                        domLayout='autoHeight'
+                    />
                 </div>
             </section>
         </Layout>

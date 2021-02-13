@@ -4,5 +4,6 @@ export const gridOptions = {
     defaultColDef: {
         sortable: true
     },
-    suppressCellSelection: true
+    suppressCellSelection: true,
+    minWidth: 100
 };

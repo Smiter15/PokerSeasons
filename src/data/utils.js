@@ -4,7 +4,7 @@ export const removeNodeFrontmatter = (data) =>
     data.map((item) => item.node.frontmatter);
 
 export const getOrdinal = (n) =>
-    ['st', 'nd', 'rd'][((((n + 90) % 100) - 10) % 10) - 1] || 'th';
+    `${n}${['st', 'nd', 'rd'][((((n + 90) % 100) - 10) % 10) - 1] || 'th'}`;
 
 // SEASONS
 
@@ -29,6 +29,11 @@ export const mapPlayersForSelect = (players) =>
     players.map((player) => {
         return { value: player.id, label: player.fullName, points: 0 };
     });
+
+// GAMES
+
+export const getPlayerGames = (games, id) =>
+    games.filter((game) => game.results.includes(id));
 
 // POINTS
 

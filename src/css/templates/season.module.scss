@@ -2,8 +2,6 @@
 
 .Season {
     @include page;
-    .stats {
-    }
     .chart {
         max-width: 600px;
         margin: 2rem auto;

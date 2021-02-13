@@ -8,7 +8,7 @@ import 'ag-grid-community/dist/styles/ag-theme-alpine.css';
 import styles from '../css/pages/games.module.scss';
 
 import Layout from '../components/Layout';
-import PlayerRenderer from '../components/grid/PlayerRenderer';
+import WinnerRenderer from '../components/grid/WinnerRenderer';
 
 import { useGamesData } from '../data/gamesData';
 import { usePlayersData } from '../data/playersData';
@@ -27,7 +27,7 @@ const Games = () => {
         { field: 'seasonGame' },
         {
             field: 'winner',
-            cellRendererFramework: PlayerRenderer,
+            cellRendererFramework: WinnerRenderer,
             cellRendererParams: { players }
         }
     ];

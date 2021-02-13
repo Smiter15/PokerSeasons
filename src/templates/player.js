@@ -1,14 +1,50 @@
 import React from 'react';
-import { graphql } from 'gatsby';
+import { graphql, navigate } from 'gatsby';
 import Img from 'gatsby-image';
 import ReactMarkdown from 'react-markdown/with-html';
+import { AgGridReact } from 'ag-grid-react';
+
+import 'ag-grid-community/dist/styles/ag-grid.css';
+import 'ag-grid-community/dist/styles/ag-theme-alpine.css';
 
 import styles from '../css/templates/player.module.scss';
 
 import Layout from '../components/Layout';
+import PositionRenderer from '../components/grid/PositionRenderer';
+import PrizeRenderer from '../components/grid/PrizeRenderer';
+
+import { useGamesData } from '../data/gamesData';
+import { getPlayerGames } from '../data/utils';
+
+import { gridOptions } from '../components/grid/utils';
 
 export default function Template({ data }) {
     const { frontmatter } = data.markdownRemark;
+    const { id: playerId } = frontmatter;
+
+    const games = useGamesData();
+    const playerGames = getPlayerGames(games, playerId);
+
+    const gameColumns = [
+        { field: 'id' },
+        { field: 'season' },
+        { field: 'seasonGame' },
+        {
+            field: 'position',
+            cellRendererFramework: PositionRenderer,
+            cellRendererParams: { playerId }
+        },
+        {
+            field: 'prize',
+            cellRendererFramework: PrizeRenderer,
+            cellRendererParams: { playerId }
+        }
+    ];
+
+    const gameGrid = {
+        ...gridOptions,
+        columnDefs: gameColumns
+    };
 
     return (
         <Layout>
@@ -42,13 +78,21 @@ export default function Template({ data }) {
                     />
                 </div>
                 <hr />
-                <div className={styles.stats}>
-                    <h2>Poker career</h2>
-                    <ul>
-                        <li>Career earnings: £{frontmatter.careerEarnings}</li>
-                        <li>Seasons played: {frontmatter.seasonsPlayed}</li>
-                        <li>Games played: {frontmatter.gamesPlayed}</li>
-                    </ul>
+                <h2>Poker career</h2>
+                <ul>
+                    <li>Career earnings: ${frontmatter.careerEarnings}</li>
+                    <li>Seasons played: {frontmatter.seasonsPlayed}</li>
+                    <li>Games played: {frontmatter.gamesPlayed}</li>
+                </ul>
+                <hr />
+                <h2>Games</h2>
+                <div className='ag-theme-alpine'>
+                    <AgGridReact
+                        gridOptions={gameGrid}
+                        rowData={games}
+                        onRowClicked={(row) => navigate(row.data.path)}
+                        domLayout='autoHeight'
+                    />
                 </div>
             </section>
         </Layout>
