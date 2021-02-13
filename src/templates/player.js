@@ -14,7 +14,6 @@ import PositionRenderer from '../components/grid/PositionRenderer';
 import PrizeRenderer from '../components/grid/PrizeRenderer';
 
 import { useGamesData } from '../data/gamesData';
-import { getPlayerGames } from '../data/utils';
 
 import { gridOptions } from '../components/grid/utils';
 
@@ -23,7 +22,6 @@ export default function Template({ data }) {
     const { id: playerId } = frontmatter;
 
     const games = useGamesData();
-    const playerGames = getPlayerGames(games, playerId);
 
     const gameColumns = [
         { field: 'id' },
