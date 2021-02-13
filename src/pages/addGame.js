@@ -38,6 +38,7 @@ const AddGame = () => {
     );
     const [selectedPlayers, setSelectedPlayers] = useState([]);
 
+    const [date, setDate] = useState(null);
     const [payout1, setpayout1] = useState(0);
     const [payout2, setpayout2] = useState(0);
     const [payout3, setpayout3] = useState(0);
@@ -87,6 +88,7 @@ const AddGame = () => {
                     currentSeason.id,
                     seasonGameCount,
                     selectedPlayers,
+                    date,
                     [
                         parseFloat(payout1),
                         parseFloat(payout2),
@@ -126,6 +128,15 @@ const AddGame = () => {
                         );
                     })}
                 </ul>
+
+                <h3>Played on</h3>
+                <label htmlFor='date'>Date played</label>
+                <input
+                    id='date'
+                    type='date'
+                    onChange={(e) => setDate(e.target.value)}
+                />
+                <br />
 
                 <h3>Payout</h3>
                 <label htmlFor='first'>1st</label>

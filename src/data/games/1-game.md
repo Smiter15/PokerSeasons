@@ -3,7 +3,7 @@ id: 1
 path: /games/1/
 season: 1
 seasonGame: 1
-date: 10/02/2021
+date: 2021-02-2021
 
 # player ids in order of resutls
 results:

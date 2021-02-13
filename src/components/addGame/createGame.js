@@ -11,6 +11,7 @@ export const createGame = (
     seasonId,
     seasonGameCount,
     players,
+    datePlayed,
     payout
 ) => {
     const points = players.map((_, i) => getPoints(players.length, i + 1));
@@ -20,7 +21,7 @@ id: ${gameId}
 path: /games/${gameId}/
 season: ${seasonId}
 seasonGame: ${seasonGameCount}
-date: ${new Date()}
+date: ${datePlayed}
 
 # player ids in order of results
 results:
@@ -28,7 +29,6 @@ ${renderArrayData(players.map((p) => p.value))}
 # points for each position
 points:
 ${renderArrayData(points)}
-# TODO DYNAMIC
 payout:
 ${renderArrayData(payout)}
 # player id
