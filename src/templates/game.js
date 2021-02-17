@@ -16,8 +16,6 @@ export default function Template({ data }) {
     const { frontmatter } = data.markdownRemark;
     const { id: gameId, payout } = frontmatter;
 
-    console.log(frontmatter);
-
     // data
     const players = getGamePlayers(usePlayersData(), gameId);
 

@@ -8,22 +8,19 @@ nickName: Fishing for Tommy
 fullNickName: Will "Fishing for Tommy" Whitell
 profileImage: ../../images/players/will-whitell.png
 joinedDate: 2021-02-05T14:30:35.701Z
-occupation: Something about japanese knot weed
+occupation: Hippy
 role: Treasurer
 blurb: >-
-    Will once ate 20 creme eggs for a bet. He did it but the lifetime diabetes after was "probably not worth the 2 quid".
-    <br />
-    His biggest tournament win to date is circa $25.
-    <br />
-    He wouldn't actually fish, as that goes against his vegan religion.
+    Will once ate 20 creme eggs for a bet. He did it but the lifetime diabetes after was "probably not worth the 2 quid". <br /> His biggest tournament win to date is circa $25. <br /> He wouldn't actually fish, as that goes against his vegan religion.
 
 seasons:
     - 1
 
 games:
+- 2
 
-careerEarnings: 0
+careerEarnings: 0.00
 seasonsPlayed: 1
-gamesPlayed: 0
-currentSeasonPoints: 0
+gamesPlayed: 1
+currentSeasonPoints: 11.34
 ---

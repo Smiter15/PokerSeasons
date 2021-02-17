@@ -16,12 +16,14 @@ import PrizeRenderer from '../components/grid/PrizeRenderer';
 import { useGamesData } from '../data/gamesData';
 
 import { gridOptions } from '../components/grid/utils';
+import { getPlayerGames } from '../data/utils';
 
 export default function Template({ data }) {
     const { frontmatter } = data.markdownRemark;
     const { id: playerId } = frontmatter;
 
-    const games = useGamesData();
+    const gamesData = useGamesData();
+    const games = getPlayerGames(gamesData, playerId);
 
     const gameColumns = [
         { field: 'id' },
