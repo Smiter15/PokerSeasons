@@ -46,7 +46,7 @@ const Games = () => {
                     <Link to={lastGame.path}>Game {lastGame.id}</Link>
                 </div>
                 <hr />
-                <h3>Previous games</h3>
+                <h3>All games</h3>
                 <div className='ag-theme-alpine'>
                     <AgGridReact
                         gridOptions={gameGrid}

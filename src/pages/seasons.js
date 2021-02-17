@@ -22,7 +22,7 @@ const Seasons = () => {
                     <Link to={lastSeason.path}>Season {lastSeason.id}</Link>
                 </div>
                 <hr />
-                <h3>Previous seasons</h3>
+                <h3>All seasons</h3>
                 <p>...</p>
                 <p>...</p>
                 <p>...</p>

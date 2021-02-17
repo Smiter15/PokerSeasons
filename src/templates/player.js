@@ -25,6 +25,19 @@ export default function Template({ data }) {
     const gamesData = useGamesData();
     const games = getPlayerGames(gamesData, playerId);
 
+    const gamesWithPoints = games.map((game) => {
+        const playerResult = game.results.filter(
+            (result) => result === playerId
+        )[0];
+        const playerResultIndex = game.results.indexOf(playerResult);
+        const points = game.points[playerResultIndex];
+
+        return {
+            ...game,
+            points
+        };
+    });
+
     const gameColumns = [
         { field: 'id' },
         { field: 'season' },
@@ -34,6 +47,7 @@ export default function Template({ data }) {
             cellRendererFramework: PositionRenderer,
             cellRendererParams: { playerId }
         },
+        { field: 'points' },
         {
             field: 'prize',
             cellRendererFramework: PrizeRenderer,
@@ -80,7 +94,10 @@ export default function Template({ data }) {
                 <hr />
                 <h2>Poker career</h2>
                 <ul>
-                    <li>Career earnings: ${frontmatter.careerEarnings}</li>
+                    <li>
+                        Career earnings: $
+                        {frontmatter.careerEarnings.toFixed(2)}
+                    </li>
                     <li>Seasons played: {frontmatter.seasonsPlayed}</li>
                     <li>Games played: {frontmatter.gamesPlayed}</li>
                 </ul>
@@ -89,7 +106,7 @@ export default function Template({ data }) {
                 <div className='ag-theme-alpine'>
                     <AgGridReact
                         gridOptions={gameGrid}
-                        rowData={games}
+                        rowData={gamesWithPoints}
                         onRowClicked={(row) => navigate(row.data.path)}
                         domLayout='autoHeight'
                     />

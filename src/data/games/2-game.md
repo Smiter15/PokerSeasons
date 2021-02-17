@@ -27,6 +27,16 @@ points:
 - 11.34
 - 10.61
 - 10
+# player id on the left knocked out the player id on the right
+knockouts:
+- [1, 6]
+- [3, 9]
+- [1, 2]
+- [3, 10]
+- [7, 5]
+- [1, 7]
+- [4, 3]
+- [1, 4]
 payout:
 - 20.25
 - 12.15

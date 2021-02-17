@@ -16,7 +16,6 @@ export default function Template({ data }) {
     const { frontmatter } = data.markdownRemark;
     const { id: gameId, payout } = frontmatter;
 
-    // data
     const players = getGamePlayers(usePlayersData(), gameId);
 
     const playersWithGamePoints = players.map((player) => {
@@ -95,6 +94,7 @@ export const pageQuery = graphql`
                 date
                 results
                 points
+                knockouts
                 payout
                 winner
             }
