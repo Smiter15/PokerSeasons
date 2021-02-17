@@ -7,3 +7,9 @@ See the site at <a href="https://relaxed-lamarr-acb28f.netlify.app/" target="_bl
 `npm start`
 
 ## Test
+
+`npm test`
+
+### Known issues
+
+<p>Adds 2 games to a new player when adding a game with /addGame</p>
