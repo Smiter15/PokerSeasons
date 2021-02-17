@@ -19,7 +19,6 @@ export const useSeasonsData = () => {
                                 games
                                 currentKitty
                                 active
-                                complete
                             }
                         }
                     }

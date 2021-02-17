@@ -16,6 +16,8 @@ export default function Template({ data }) {
     const { frontmatter } = data.markdownRemark;
     const { id: gameId, payout } = frontmatter;
 
+    console.log(frontmatter);
+
     // data
     const players = getGamePlayers(usePlayersData(), gameId);
 
@@ -93,7 +95,6 @@ export const pageQuery = graphql`
                 season
                 seasonGame
                 date
-                players
                 results
                 points
                 payout

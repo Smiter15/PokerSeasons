@@ -21,10 +21,9 @@ seasons:
     - 1
 
 games:
-    - 1
 
 careerEarnings: 0
 seasonsPlayed: 1
-gamesPlayed: 1
+gamesPlayed: 0
 currentSeasonPoints: 0
 ---

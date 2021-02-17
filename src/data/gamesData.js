@@ -20,8 +20,8 @@ export const useGamesData = () => {
                                 date
                                 results
                                 points
-                                winner
                                 payout
+                                winner
                             }
                         }
                     }

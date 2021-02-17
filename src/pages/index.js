@@ -41,6 +41,10 @@ const HomePage = () => {
                     </a>
                     . Check out row 60. Please don't change the formula!
                 </p>
+                <h3>Upcoming features</h3>
+                <ul>
+                    <li>Knock out statistics</li>
+                </ul>
             </section>
         </Layout>
     );

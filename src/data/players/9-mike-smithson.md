@@ -9,7 +9,7 @@ fullNickName: Mike "Smuttles" Smithson
 profileImage: ../../images/players/mike-smithson.png
 joinedDate: 2021-02-12T19:58:35.701Z
 occupation: Gadget collector
-role: 
+role:
 blurb: >-
     More partial to blackjack, he also enjoys and loses money at poker. <br /> His biggest tournament win to date is circa $2. <br /> <strong>You</strong> try saying Smithson way drunk.
 
@@ -17,11 +17,9 @@ seasons:
     - 1
 
 games:
-- 4
-- 4
 
-careerEarnings: 15.00
+careerEarnings: 0
 seasonsPlayed: 1
-gamesPlayed: 1
-currentSeasonPoints: 22.36
+gamesPlayed: 0
+currentSeasonPoints: 0
 ---

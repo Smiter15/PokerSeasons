@@ -161,8 +161,11 @@ export const pageQuery = graphql`
         markdownRemark(frontmatter: { path: { eq: $path } }) {
             frontmatter {
                 id
+                path
                 players
+                games
                 currentKitty
+                active
             }
         }
     }

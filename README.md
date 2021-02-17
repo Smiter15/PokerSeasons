@@ -2,6 +2,8 @@ See the site at <a href="https://relaxed-lamarr-acb28f.netlify.app/" target="_bl
 
 ## Dev
 
-`nvm use`
-`npm i`
+`nvm use`<br />
+`npm i`<br />
 `npm start`
+
+## Test

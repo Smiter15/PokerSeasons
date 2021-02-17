@@ -136,7 +136,7 @@ const AddGame = () => {
                     type='date'
                     onChange={(e) => setDate(e.target.value)}
                 />
-                <br />
+                <br />index
 
                 <h3>Payout</h3>
                 <label htmlFor='first'>1st</label>
