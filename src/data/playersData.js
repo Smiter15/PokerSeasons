@@ -8,10 +8,7 @@ export const usePlayersData = () => {
             query {
                 allMarkdownRemark(
                     filter: { fileAbsolutePath: { regex: "/(players)/" } }
-                    sort: {
-                        order: DESC
-                        fields: frontmatter___currentSeasonPoints
-                    }
+                    sort: { order: ASC, fields: frontmatter___id }
                 ) {
                     edges {
                         node {

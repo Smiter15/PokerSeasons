@@ -25,6 +25,9 @@ points:
     - 10.80
     - 10
 
+knockouts:
+    - [0, 0]
+
 payout:
     - 22.05
     - 9.45

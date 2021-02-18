@@ -19,8 +19,8 @@ export const getSeasonPlayers = (players, season) =>
 
 // PLAYERS
 
-export const getGamePlayers = (players, game) =>
-    players.filter((player) => player.games.includes(game));
+export const getPlayerGames = (games, id) =>
+    games.filter((game) => game.results.includes(id));
 
 export const getPlayer = (players, id) =>
     players.filter((player) => player.id === id)[0];
@@ -30,10 +30,61 @@ export const mapPlayersForSelect = (players) =>
         return { value: player.id, label: player.fullName, points: 0 };
     });
 
+export const getPlayerKDRatio = (games, id) => {
+    const kd = [0, 0]; // kill, death
+
+    games.forEach((game) => {
+        const { knockouts } = game;
+
+        knockouts.forEach(([kill, death]) => {
+            if (kill === id) kd[0]++;
+            if (death === id) kd[1]++;
+        });
+    });
+
+    return kd;
+};
+
+export const getPlayerKnockouts = (games, allPlayers, id) => {
+    const knockoutData = [];
+
+    // remove self from players
+    const players = allPlayers.filter((player) => player.id !== id);
+
+    players.forEach((player) => {
+        let kills = 0;
+        let deaths = 0;
+
+        games.forEach((game) => {
+            const { knockouts } = game;
+
+            knockouts.forEach((knockout) => {
+                if (knockout.includes(player.id)) {
+                    const [kill, death] = knockout;
+
+                    if (kill === id) kills++;
+                    if (death === id) deaths++;
+                }
+            });
+        });
+
+        // if kills or deaths add to data
+        if (kills || deaths) {
+            knockoutData.push({
+                id: player.id,
+                kills,
+                deaths
+            });
+        }
+    });
+
+    return knockoutData;
+};
+
 // GAMES
 
-export const getPlayerGames = (games, id) =>
-    games.filter((game) => game.results.includes(id));
+export const getGamePlayers = (players, game) =>
+    players.filter((player) => player.games.includes(game));
 
 // POINTS
 

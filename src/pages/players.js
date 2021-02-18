@@ -27,7 +27,17 @@ const Players = () => {
 
     const playerGrid = {
         ...gridOptions,
-        columnDefs: playerColumns
+        columnDefs: playerColumns,
+        onGridReady: (e) => {
+            e.columnApi.applyColumnState({
+                state: [
+                    {
+                        colId: 'currentSeasonPoints',
+                        sort: 'desc'
+                    }
+                ]
+            });
+        }
     };
 
     return (

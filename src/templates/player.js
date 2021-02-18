@@ -3,6 +3,8 @@ import { graphql, navigate } from 'gatsby';
 import Img from 'gatsby-image';
 import ReactMarkdown from 'react-markdown/with-html';
 import { AgGridReact } from 'ag-grid-react';
+import Highcharts from 'highcharts';
+import HighchartsReact from 'highcharts-react-official';
 
 import 'ag-grid-community/dist/styles/ag-grid.css';
 import 'ag-grid-community/dist/styles/ag-theme-alpine.css';
@@ -12,11 +14,16 @@ import styles from '../css/templates/player.module.scss';
 import Layout from '../components/Layout';
 import PositionRenderer from '../components/grid/PositionRenderer';
 import PrizeRenderer from '../components/grid/PrizeRenderer';
+import { gridOptions } from '../components/grid/utils';
 
 import { useGamesData } from '../data/gamesData';
-
-import { gridOptions } from '../components/grid/utils';
-import { getPlayerGames } from '../data/utils';
+import { usePlayersData } from '../data/playersData';
+import {
+    getPlayerGames,
+    getPlayerKDRatio,
+    getPlayerKnockouts,
+    getPlayer
+} from '../data/utils';
 
 export default function Template({ data }) {
     const { frontmatter } = data.markdownRemark;
@@ -24,6 +31,60 @@ export default function Template({ data }) {
 
     const gamesData = useGamesData();
     const games = getPlayerGames(gamesData, playerId);
+
+    const players = usePlayersData();
+
+    const [k, d] = getPlayerKDRatio(games, playerId);
+
+    const knockoutData = getPlayerKnockouts(games, players, playerId);
+    const playerIds = knockoutData.map((data) => data.id);
+    const kills = knockoutData.map((data) => data.kills);
+    const deaths = knockoutData.map((data) => data.deaths);
+
+    const options = {
+        chart: {
+            type: 'column'
+        },
+        title: {
+            text: 'Knockouts'
+        },
+        xAxis: {
+            title: {
+                text: 'Players'
+            },
+            categories: playerIds.map((id) => getPlayer(players, id).firstName)
+        },
+        yAxis: {
+            title: {
+                text: 'Number of knockouts'
+            },
+            tickInterval: 1
+        },
+        tooltip: {
+            valueSuffix: ' knockouts'
+        },
+        credits: {
+            enabled: false
+        },
+        plotOptions: {
+            column: {
+                pointPadding: 0.2,
+                borderWidth: 0
+            }
+        },
+        series: [
+            {
+                name: 'Kill',
+                data: kills,
+                color: 'green'
+            },
+            {
+                name: 'Death',
+                data: deaths,
+                color: 'red'
+            }
+        ]
+    };
 
     const gamesWithPoints = games.map((game) => {
         const playerResult = game.results.filter(
@@ -101,6 +162,13 @@ export default function Template({ data }) {
                     <li>Seasons played: {frontmatter.seasonsPlayed}</li>
                     <li>Games played: {frontmatter.gamesPlayed}</li>
                 </ul>
+                <hr />
+                <h2>Knockouts</h2>
+                <p>
+                    Kill / death ratio:{' '}
+                    {d === 0 ? k.toFixed(2) : (k / d).toFixed(2)}
+                </p>
+                <HighchartsReact highcharts={Highcharts} options={options} />
                 <hr />
                 <h2>Games</h2>
                 <div className='ag-theme-alpine'>
