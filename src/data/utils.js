@@ -6,6 +6,9 @@ export const removeNodeFrontmatter = (data) =>
 export const getOrdinal = (n) =>
     `${n}${['st', 'nd', 'rd'][((((n + 90) % 100) - 10) % 10) - 1] || 'th'}`;
 
+export const extract = (data, properties) =>
+    properties.map((p) => data.map((d) => d[p]));
+
 // SEASONS
 
 export const getCurrentSeason = (seasons) =>

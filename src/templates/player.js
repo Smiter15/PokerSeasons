@@ -19,6 +19,7 @@ import { gridOptions } from '../components/grid/utils';
 import { useGamesData } from '../data/gamesData';
 import { usePlayersData } from '../data/playersData';
 import {
+    extract,
     getPlayerGames,
     getPlayerKDRatio,
     getPlayerKnockouts,
@@ -37,9 +38,11 @@ export default function Template({ data }) {
     const [k, d] = getPlayerKDRatio(games, playerId);
 
     const knockoutData = getPlayerKnockouts(games, players, playerId);
-    const playerIds = knockoutData.map((data) => data.id);
-    const kills = knockoutData.map((data) => data.kills);
-    const deaths = knockoutData.map((data) => data.deaths);
+    const [playerIds, kills, deaths] = extract(knockoutData, [
+        'id',
+        'kills',
+        'deaths'
+    ]);
 
     const options = {
         chart: {
