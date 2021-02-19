@@ -34,7 +34,8 @@ const Games = () => {
 
     const gameGrid = {
         ...gridOptions,
-        columnDefs: gameColumns
+        columnDefs: gameColumns,
+        onGridReady: (e) => e.api.sizeColumnsToFit()
     };
 
     return (

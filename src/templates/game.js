@@ -50,6 +50,7 @@ export default function Template({ data }) {
                     }
                 ]
             });
+            e.api.sizeColumnsToFit();
         }
     };
 

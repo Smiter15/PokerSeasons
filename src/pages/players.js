@@ -37,6 +37,7 @@ const Players = () => {
                     }
                 ]
             });
+            e.api.sizeColumnsToFit();
         }
     };
 

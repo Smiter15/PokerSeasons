@@ -121,7 +121,8 @@ export default function Template({ data }) {
 
     const gameGrid = {
         ...gridOptions,
-        columnDefs: gameColumns
+        columnDefs: gameColumns,
+        onGridReady: (e) => e.api.sizeColumnsToFit()
     };
 
     return (
