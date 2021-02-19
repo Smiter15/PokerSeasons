@@ -6,9 +6,6 @@ export const removeNodeFrontmatter = (data) =>
 export const getOrdinal = (n) =>
     `${n}${['st', 'nd', 'rd'][((((n + 90) % 100) - 10) % 10) - 1] || 'th'}`;
 
-export const extract = (data, properties) =>
-    properties.map((p) => data.map((d) => d[p]));
-
 // SEASONS
 
 export const getCurrentSeason = (seasons) =>
@@ -19,6 +16,11 @@ export const getSeasonGames = (games, season) =>
 
 export const getSeasonPlayers = (players, season) =>
     players.filter((player) => player.seasons.includes(season));
+
+// GAMES
+
+export const getGamePlayers = (players, game) =>
+    players.filter((player) => player.games.includes(game));
 
 // PLAYERS
 
@@ -32,6 +34,16 @@ export const mapPlayersForSelect = (players) =>
     players.map((player) => {
         return { value: player.id, label: player.fullName, points: 0 };
     });
+
+// POINTS
+
+export const getPoints = (noPlayers, position) =>
+    parseFloat((Math.sqrt(noPlayers / position) * 10).toFixed(2));
+
+// KNOCKOUTS
+
+export const extract = (data, properties) =>
+    properties.map((p) => data.map((d) => d[p]));
 
 export const getPlayerKDRatio = (games, id) => {
     const kd = [0, 0]; // kill, death
@@ -83,13 +95,3 @@ export const getPlayerKnockouts = (games, allPlayers, id) => {
 
     return knockoutData;
 };
-
-// GAMES
-
-export const getGamePlayers = (players, game) =>
-    players.filter((player) => player.games.includes(game));
-
-// POINTS
-
-export const getPoints = (noPlayers, position) =>
-    parseFloat((Math.sqrt(noPlayers / position) * 10).toFixed(2));
