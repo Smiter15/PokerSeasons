@@ -11,24 +11,24 @@ export const getOrdinal = (n) =>
 export const getCurrentSeason = (seasons) =>
     seasons.filter((season) => season.active === true)[0];
 
-export const getSeasonGames = (games, season) =>
-    games.filter((game) => game.season === season);
+export const getSeasonGames = (games, seasonId) =>
+    games.filter((game) => game.season === seasonId);
 
-export const getSeasonPlayers = (players, season) =>
-    players.filter((player) => player.seasons.includes(season));
+export const getSeasonPlayers = (players, seasonId) =>
+    players.filter((player) => player.seasons.includes(seasonId));
 
 // GAMES
 
-export const getGamePlayers = (players, game) =>
-    players.filter((player) => player.games.includes(game));
+export const getGamePlayers = (players, gameId) =>
+    players.filter((player) => player.games.includes(gameId));
 
 // PLAYERS
 
-export const getPlayerGames = (games, id) =>
-    games.filter((game) => game.results.includes(id));
+export const getPlayer = (players, playerId) =>
+    players.filter((player) => player.id === playerId)[0];
 
-export const getPlayer = (players, id) =>
-    players.filter((player) => player.id === id)[0];
+export const getPlayerGames = (games, playerId) =>
+    games.filter((game) => game.results.includes(playerId));
 
 export const mapPlayersForSelect = (players) =>
     players.map((player) => {
@@ -45,26 +45,26 @@ export const getPoints = (noPlayers, position) =>
 export const extract = (data, properties) =>
     properties.map((p) => data.map((d) => d[p]));
 
-export const getPlayerKDRatio = (games, id) => {
+export const getPlayerKDRatio = (games, playerId) => {
     const kd = [0, 0]; // kill, death
 
     games.forEach((game) => {
         const { knockouts } = game;
 
         knockouts.forEach(([kill, death]) => {
-            if (kill === id) kd[0]++;
-            if (death === id) kd[1]++;
+            if (kill === playerId) kd[0]++;
+            if (death === playerId) kd[1]++;
         });
     });
 
     return kd;
 };
 
-export const getPlayerKnockouts = (games, allPlayers, id) => {
+export const getPlayerKnockouts = (games, allPlayers, playerId) => {
     const knockoutData = [];
 
     // remove self from players
-    const players = allPlayers.filter((player) => player.id !== id);
+    const players = allPlayers.filter((player) => player.id !== playerId);
 
     players.forEach((player) => {
         let kills = 0;
@@ -77,8 +77,8 @@ export const getPlayerKnockouts = (games, allPlayers, id) => {
                 if (knockout.includes(player.id)) {
                     const [kill, death] = knockout;
 
-                    if (kill === id) kills++;
-                    if (death === id) deaths++;
+                    if (kill === playerId) kills++;
+                    if (death === playerId) deaths++;
                 }
             });
         });

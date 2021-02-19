@@ -17,7 +17,7 @@ results:
 
 # points for each position
 points:
-    - 24.46
+    - 26.46
     - 18.71
     - 15.28
     - 13.23

@@ -23,5 +23,5 @@ games:
 careerEarnings: 42.30
 seasonsPlayed: 1
 gamesPlayed: 2
-currentSeasonPoints: 54.46
+currentSeasonPoints: 56.46
 ---
