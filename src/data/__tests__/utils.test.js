@@ -37,7 +37,7 @@ describe('Utils', () => {
         expect(removeNodeFrontmatter(nodeFrontmatterData)).toEqual(data);
     });
 
-    it('Returns correct values for ordinals', () => {
+    it('Returns the ordinal for a given position', () => {
         const first = getOrdinal(1);
         const second = getOrdinal(2);
         const third = getOrdinal(3);

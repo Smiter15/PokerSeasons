@@ -36,7 +36,10 @@ const AddGame = () => {
     const [playerOptions, setPlayerOptions] = useState(
         mapPlayersForSelect(players)
     );
-    const [selectedPlayers, setSelectedPlayers] = useState([]);
+    const [resultPlayers, setResultPlayers] = useState([]);
+
+    const [killers, setKillers] = useState([]);
+    const [dead, setDead] = useState([]);
 
     const [date, setDate] = useState(null);
     const [payout1, setpayout1] = useState(0);
@@ -46,7 +49,7 @@ const AddGame = () => {
     // functions
 
     const handleSelectPlayer = (player) => {
-        setSelectedPlayers([...selectedPlayers, player]);
+        setResultPlayers([...resultPlayers, player]);
         // remove selected player from options list
         setPlayerOptions(
             playerOptions.filter(
@@ -58,17 +61,29 @@ const AddGame = () => {
     const removePlayer = (player) => {
         setPlayerOptions([...playerOptions, player]);
         // remove player from results list
-        setSelectedPlayers(
-            selectedPlayers.filter(
-                (selectedPlayer) => selectedPlayer.value !== player.value
+        setResultPlayers(
+            resultPlayers.filter(
+                (resultPlayer) => resultPlayer.value !== player.value
             )
         );
     };
 
+    const handleKillPlayers = (player) => {
+        setKillers([...killers, player]);
+    };
+
+    const handleDeathPlayers = (player) => {
+        setDead([...dead, player]);
+    };
+
     const addGame = () => {
-        // update players
-        selectedPlayers.forEach((player, i) => {
-            const points = getPoints(selectedPlayers.length, i + 1);
+        const knockouts = killers.map((killer, i) => {
+            return [...[killer.value, dead[i].value]];
+        });
+
+        // update player data
+        resultPlayers.forEach((player, i) => {
+            const points = getPoints(resultPlayers.length, i + 1);
             const prize =
                 [parseFloat(payout1), parseFloat(payout2), parseFloat(payout3)][
                     i
@@ -80,20 +95,22 @@ const AddGame = () => {
                 prize
             );
         });
-        // create game
+
+        // create game data
         const blob = new Blob(
             [
                 createGame(
                     newGameId,
                     currentSeason.id,
                     seasonGameCount,
-                    selectedPlayers,
+                    resultPlayers,
                     date,
                     [
                         parseFloat(payout1),
                         parseFloat(payout2),
                         parseFloat(payout3)
-                    ]
+                    ],
+                    knockouts
                 )
             ],
             {
@@ -108,15 +125,15 @@ const AddGame = () => {
             <section className={styles.AddGame}>
                 <h1>Add a game</h1>
 
-                <h3>Choose player</h3>
+                <h3>Choose player in results order</h3>
                 <Select onChange={handleSelectPlayer} options={playerOptions} />
                 <br />
                 <hr />
 
                 <h3>Results of game</h3>
                 <ul>
-                    {selectedPlayers.map((player, i) => {
-                        const points = getPoints(selectedPlayers.length, i + 1);
+                    {resultPlayers.map((player, i) => {
+                        const points = getPoints(resultPlayers.length, i + 1);
 
                         return (
                             <li key={player.value} className={styles.listItem}>
@@ -128,6 +145,27 @@ const AddGame = () => {
                         );
                     })}
                 </ul>
+                <hr />
+
+                <h3>Knockouts</h3>
+                {resultPlayers.map((_, i) => {
+                    return (
+                        <div className={styles.knockout} key={`killer-${i}`}>
+                            <Select
+                                className={styles.knockoutSelect}
+                                onChange={handleKillPlayers}
+                                options={resultPlayers}
+                            />
+                            <p>-> Knocked out -></p>
+                            <Select
+                                className={styles.knockoutSelect}
+                                onChange={handleDeathPlayers}
+                                options={resultPlayers}
+                            />
+                        </div>
+                    );
+                })}
+                <hr />
 
                 <h3>Played on</h3>
                 <label htmlFor='date'>Date played</label>
@@ -137,6 +175,7 @@ const AddGame = () => {
                     onChange={(e) => setDate(e.target.value)}
                 />
                 <br />
+                <hr />
 
                 <h3>Payout</h3>
                 <label htmlFor='first'>1st</label>
