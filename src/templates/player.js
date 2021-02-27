@@ -20,7 +20,8 @@ import {
     getPlayerGames,
     getPlayerKDRatio,
     getPlayerKnockouts,
-    getPlayer
+    getPlayer,
+    getPlayerPoints
 } from '../data/utils';
 
 import { useGamesData } from '../data/gamesData';
@@ -29,8 +30,8 @@ import { usePlayersData } from '../data/playersData';
 import { gridOptions } from '../components/grid/utils';
 
 export default function Template({ data }) {
-    const { frontmatter } = data.markdownRemark;
-    const { id: playerId } = frontmatter;
+    const { frontmatter: player } = data.markdownRemark;
+    const { id: playerId } = player;
 
     const gamesData = useGamesData();
     const games = getPlayerGames(gamesData, playerId);
@@ -92,11 +93,7 @@ export default function Template({ data }) {
     };
 
     const gamesWithPoints = games.map((game) => {
-        const playerResult = game.results.filter(
-            (result) => result === playerId
-        )[0];
-        const playerResultIndex = game.results.indexOf(playerResult);
-        const points = game.points[playerResultIndex];
+        const points = getPlayerPoints(game, player);
 
         return {
             ...game,
@@ -133,40 +130,36 @@ export default function Template({ data }) {
                 <div className={styles.intro}>
                     <Img
                         className={styles.profileImage}
-                        fluid={frontmatter.profileImage.childImageSharp.fluid}
+                        fluid={player.profileImage.childImageSharp.fluid}
                     />
                     <div className={styles.about}>
-                        <h1>{frontmatter.fullName}</h1>
+                        <h1>{player.fullName}</h1>
                         <p>
-                            <b>Known as:</b> {frontmatter.fullNickName}
+                            <b>Known as:</b> {player.fullNickName}
                             <br />
-                            <b>Joined:</b> {frontmatter.joinedDate}
+                            <b>Joined:</b> {player.joinedDate}
                             <br />
-                            <b>Occupation:</b> {frontmatter.occupation}
-                            {frontmatter.role && (
+                            <b>Occupation:</b> {player.occupation}
+                            {player.role && (
                                 <>
                                     <br />
-                                    <b>Role:</b> {frontmatter.role}
+                                    <b>Role:</b> {player.role}
                                 </>
                             )}
                         </p>
                     </div>
                 </div>
                 <div className={styles.blurb}>
-                    <ReactMarkdown
-                        source={frontmatter.blurb}
-                        escapeHtml={false}
-                    />
+                    <ReactMarkdown source={player.blurb} escapeHtml={false} />
                 </div>
                 <hr />
                 <h2>Poker career</h2>
                 <ul>
                     <li>
-                        Career earnings: $
-                        {frontmatter.careerEarnings.toFixed(2)}
+                        Career earnings: ${player.careerEarnings.toFixed(2)}
                     </li>
-                    <li>Seasons played: {frontmatter.seasonsPlayed}</li>
-                    <li>Games played: {frontmatter.gamesPlayed}</li>
+                    <li>Seasons played: {player.seasonsPlayed}</li>
+                    <li>Games played: {player.gamesPlayed}</li>
                 </ul>
                 <hr />
                 <h2>Knockouts</h2>
