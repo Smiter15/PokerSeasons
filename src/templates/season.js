@@ -13,9 +13,15 @@ import Layout from '../components/Layout';
 import ImageRenderer from '../components/grid/ImageRenderer';
 import WinnerRenderer from '../components/grid/WinnerRenderer';
 
+import {
+    getSeasonGames,
+    getSeasonPlayers,
+    getPlayerGames,
+    getPlayerPoints
+} from '../data/utils';
+
 import { useGamesData } from '../data/gamesData';
 import { usePlayersData } from '../data/playersData';
-import { getSeasonGames, getSeasonPlayers } from '../data/utils';
 
 import { gridOptions } from '../components/grid/utils';
 
@@ -27,10 +33,26 @@ export default function Template({ data }) {
     const games = getSeasonGames(useGamesData(), seasonId);
     const players = getSeasonPlayers(usePlayersData(), seasonId);
 
+    // calculate season points
+    const playersWithSeasonPoints = players.map((player) => {
+        // all games the player has played this seasons
+        const playerGames = getPlayerGames(games, player.id);
+
+        let seasonPoints = 0;
+        playerGames.forEach((game) => {
+            seasonPoints += getPlayerPoints(game, player);
+        });
+
+        return {
+            ...player,
+            seasonPoints: seasonPoints.toFixed(2)
+        };
+    });
+
     const playerColumns = [
         { field: 'profileImage', cellRendererFramework: ImageRenderer },
         { field: 'fullName' },
-        { field: 'currentSeasonPoints' },
+        { field: 'seasonPoints' },
         { field: 'gamesPlayed' }
     ];
 
@@ -41,7 +63,7 @@ export default function Template({ data }) {
             e.columnApi.applyColumnState({
                 state: [
                     {
-                        colId: 'currentSeasonPoints',
+                        colId: 'seasonPoints',
                         sort: 'desc'
                     }
                 ]
@@ -130,7 +152,7 @@ export default function Template({ data }) {
                     <div className='ag-theme-alpine'>
                         <AgGridReact
                             gridOptions={playerGrid}
-                            rowData={players}
+                            rowData={playersWithSeasonPoints}
                             onRowClicked={(row) => navigate(row.data.path)}
                             domLayout='autoHeight'
                         />

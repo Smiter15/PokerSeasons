@@ -17,7 +17,6 @@ export const players = [
         careerEarnings: 45,
         seasonsPlayed: 2,
         gamesPlayed: 3,
-        currentSeasonPoints: 45
     },
     {
         id: 2,
@@ -37,7 +36,6 @@ export const players = [
         careerEarnings: 50,
         seasonsPlayed: 2,
         gamesPlayed: 3,
-        currentSeasonPoints: 50
     },
     {
         id: 3,
@@ -57,6 +55,5 @@ export const players = [
         careerEarnings: 30,
         seasonsPlayed: 1,
         gamesPlayed: 2,
-        currentSeasonPoints: 30
     }
 ];

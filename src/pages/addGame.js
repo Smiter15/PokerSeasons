@@ -14,7 +14,7 @@ import {
     getSeasonGames,
     getSeasonPlayers,
     mapPlayersForSelect,
-    getPoints,
+    calcPoints,
     getPlayer
 } from '../data/utils';
 
@@ -83,7 +83,7 @@ const AddGame = () => {
 
         // update player data
         resultPlayers.forEach((player, i) => {
-            const points = getPoints(resultPlayers.length, i + 1);
+            const points = calcPoints(resultPlayers.length, i + 1);
             const prize =
                 [parseFloat(payout1), parseFloat(payout2), parseFloat(payout3)][
                     i
@@ -133,7 +133,7 @@ const AddGame = () => {
                 <h3>Results of game</h3>
                 <ul>
                     {resultPlayers.map((player, i) => {
-                        const points = getPoints(resultPlayers.length, i + 1);
+                        const points = calcPoints(resultPlayers.length, i + 1);
 
                         return (
                             <li key={player.value} className={styles.listItem}>

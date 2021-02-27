@@ -10,10 +10,10 @@ import styles from '../css/pages/games.module.scss';
 import Layout from '../components/Layout';
 import WinnerRenderer from '../components/grid/WinnerRenderer';
 
+import { gridOptions } from '../components/grid/utils';
+
 import { useGamesData } from '../data/gamesData';
 import { usePlayersData } from '../data/playersData';
-
-import { gridOptions } from '../components/grid/utils';
 
 const Games = () => {
     const games = useGamesData();

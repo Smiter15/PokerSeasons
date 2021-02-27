@@ -12,8 +12,10 @@ import {
     getGamePlayers,
     getPlayerGames,
     getPlayer,
+    getPlayerPoints,
+    getPlayerGamePosition,
     mapPlayersForSelect,
-    getPoints,
+    calcPoints,
     extract,
     getPlayerKDRatio,
     getPlayerKnockouts
@@ -129,8 +131,7 @@ describe('Utils', () => {
                     games: [1, 2, 3],
                     careerEarnings: 45,
                     seasonsPlayed: 2,
-                    gamesPlayed: 3,
-                    currentSeasonPoints: 45
+                    gamesPlayed: 3
                 },
                 {
                     id: 2,
@@ -149,8 +150,7 @@ describe('Utils', () => {
                     games: [1, 2, 3],
                     careerEarnings: 50,
                     seasonsPlayed: 2,
-                    gamesPlayed: 3,
-                    currentSeasonPoints: 50
+                    gamesPlayed: 3
                 }
             ];
 
@@ -181,8 +181,7 @@ describe('Utils', () => {
                     games: [1, 2, 3],
                     careerEarnings: 45,
                     seasonsPlayed: 2,
-                    gamesPlayed: 3,
-                    currentSeasonPoints: 45
+                    gamesPlayed: 3
                 },
                 {
                     id: 2,
@@ -201,8 +200,7 @@ describe('Utils', () => {
                     games: [1, 2, 3],
                     careerEarnings: 50,
                     seasonsPlayed: 2,
-                    gamesPlayed: 3,
-                    currentSeasonPoints: 50
+                    gamesPlayed: 3
                 }
             ];
 
@@ -231,11 +229,42 @@ describe('Utils', () => {
                 games: [1, 2, 3],
                 careerEarnings: 45,
                 seasonsPlayed: 2,
-                gamesPlayed: 3,
-                currentSeasonPoints: 45
+                gamesPlayed: 3
             };
 
             expect(getPlayer(players, 1)).toEqual(player);
+        });
+
+        it('Returns the points scored in a game for the specifc player', () => {
+            const [playerOne, playerTwo, playerThree] = players;
+            const [gameOne, gameTwo, gameThree] = games;
+
+            expect(getPlayerPoints(gameOne, playerOne)).toBe(10);
+            expect(getPlayerPoints(gameOne, playerTwo)).toBe(20);
+            expect(getPlayerPoints(gameOne, playerThree)).toBe(15);
+
+            expect(getPlayerPoints(gameTwo, playerOne)).toBe(20);
+            expect(getPlayerPoints(gameTwo, playerTwo)).toBe(10);
+            expect(getPlayerPoints(gameTwo, playerThree)).toBe(15);
+
+            expect(getPlayerPoints(gameThree, playerOne)).toBe(15);
+            expect(getPlayerPoints(gameThree, playerTwo)).toBe(20);
+        });
+
+        it('Returns position for player in specific game', () => {
+            const [playerOne, playerTwo, playerThree] = players;
+            const [gameOne, gameTwo, gameThree] = games;
+
+            expect(getPlayerGamePosition(gameOne, playerOne)).toBe('3rd');
+            expect(getPlayerGamePosition(gameOne, playerTwo)).toBe('1st');
+            expect(getPlayerGamePosition(gameOne, playerThree)).toBe('2nd');
+
+            expect(getPlayerGamePosition(gameTwo, playerOne)).toBe('1st');
+            expect(getPlayerGamePosition(gameTwo, playerTwo)).toBe('3rd');
+            expect(getPlayerGamePosition(gameTwo, playerThree)).toBe('2nd');
+
+            expect(getPlayerGamePosition(gameThree, playerOne)).toBe('2nd');
+            expect(getPlayerGamePosition(gameThree, playerTwo)).toBe('1st');
         });
 
         it('Returns all games the player has played in', () => {
@@ -286,19 +315,19 @@ describe('Utils', () => {
 
     describe('Points', () => {
         it('Returns the amount of points for position placed relative to players in game', () => {
-            expect(getPoints(7, 1)).toBe(26.46);
-            expect(getPoints(7, 2)).toBe(18.71);
-            expect(getPoints(7, 3)).toBe(15.28);
-            expect(getPoints(7, 4)).toBe(13.23);
-            expect(getPoints(7, 5)).toBe(11.83);
-            expect(getPoints(7, 6)).toBe(10.8);
-            expect(getPoints(7, 7)).toBe(10);
+            expect(calcPoints(7, 1)).toBe(26.46);
+            expect(calcPoints(7, 2)).toBe(18.71);
+            expect(calcPoints(7, 3)).toBe(15.28);
+            expect(calcPoints(7, 4)).toBe(13.23);
+            expect(calcPoints(7, 5)).toBe(11.83);
+            expect(calcPoints(7, 6)).toBe(10.8);
+            expect(calcPoints(7, 7)).toBe(10);
         });
 
         it('Always return 10 points for last position', () => {
-            expect(getPoints(1, 1)).toBe(10);
-            expect(getPoints(10, 10)).toBe(10);
-            expect(getPoints(100, 100)).toBe(10);
+            expect(calcPoints(1, 1)).toBe(10);
+            expect(calcPoints(10, 10)).toBe(10);
+            expect(calcPoints(100, 100)).toBe(10);
         });
     });
 

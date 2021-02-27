@@ -1,4 +1,4 @@
-import { getPoints } from '../../data/utils';
+import { calcPoints } from '../../data/utils';
 
 const renderArrayData = (data) =>
     data
@@ -21,7 +21,7 @@ export const createGame = (
     payout,
     knockouts
 ) => {
-    const points = results.map((_, i) => getPoints(results.length, i + 1));
+    const points = results.map((_, i) => calcPoints(results.length, i + 1));
 
     return `---
 id: ${gameId}

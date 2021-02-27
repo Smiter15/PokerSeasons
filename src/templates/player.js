@@ -14,10 +14,7 @@ import styles from '../css/templates/player.module.scss';
 import Layout from '../components/Layout';
 import PositionRenderer from '../components/grid/PositionRenderer';
 import PrizeRenderer from '../components/grid/PrizeRenderer';
-import { gridOptions } from '../components/grid/utils';
 
-import { useGamesData } from '../data/gamesData';
-import { usePlayersData } from '../data/playersData';
 import {
     extract,
     getPlayerGames,
@@ -25,6 +22,11 @@ import {
     getPlayerKnockouts,
     getPlayer
 } from '../data/utils';
+
+import { useGamesData } from '../data/gamesData';
+import { usePlayersData } from '../data/playersData';
+
+import { gridOptions } from '../components/grid/utils';
 
 export default function Template({ data }) {
     const { frontmatter } = data.markdownRemark;
@@ -215,7 +217,6 @@ export const pageQuery = graphql`
                 careerEarnings
                 seasonsPlayed
                 gamesPlayed
-                currentSeasonPoints
             }
         }
     }

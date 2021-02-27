@@ -9,7 +9,7 @@ export const getOrdinal = (n) =>
 // SEASONS
 
 export const getCurrentSeason = (seasons) =>
-    seasons.filter((season) => season.active === true)[0];
+    seasons.find((season) => season.active === true);
 
 export const getSeasonGames = (games, seasonId) =>
     games.filter((game) => game.season === seasonId);
@@ -25,7 +25,20 @@ export const getGamePlayers = (players, gameId) =>
 // PLAYERS
 
 export const getPlayer = (players, playerId) =>
-    players.filter((player) => player.id === playerId)[0];
+    players.find((player) => player.id === playerId);
+
+export const getPlayerPoints = (game, player) => {
+    const playerResult = game.results.find((result) => result === player.id);
+    const playerResultIndex = game.results.indexOf(playerResult);
+
+    return game.points[playerResultIndex];
+};
+
+export const getPlayerGamePosition = (game, player) => {
+    const playerResult = game.results.find((result) => result === player.id);
+
+    return getOrdinal(game.results.indexOf(playerResult) + 1);
+};
 
 export const getPlayerGames = (games, playerId) =>
     games.filter((game) => game.results.includes(playerId));
@@ -37,7 +50,7 @@ export const mapPlayersForSelect = (players) =>
 
 // POINTS
 
-export const getPoints = (noPlayers, position) =>
+export const calcPoints = (noPlayers, position) =>
     parseFloat((Math.sqrt(noPlayers / position) * 10).toFixed(2));
 
 // KNOCKOUTS

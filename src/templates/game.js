@@ -7,35 +7,54 @@ import styles from '../css/templates/game.module.scss';
 import Layout from '../components/Layout';
 import ImageRenderer from '../components/grid/ImageRenderer';
 
-import { getOrdinal, getGamePlayers } from '../data/utils';
+import {
+    getOrdinal,
+    getSeasonGames,
+    getGamePlayers,
+    getPlayerPoints,
+    getPlayerGamePosition,
+    getPlayerGames
+} from '../data/utils';
+
+import { useGamesData } from '../data/gamesData';
 import { usePlayersData } from '../data/playersData';
 
 import { gridOptions } from '../components/grid/utils';
 
 export default function Template({ data }) {
-    const { frontmatter } = data.markdownRemark;
-    const { id: gameId, payout } = frontmatter;
+    const { frontmatter: game } = data.markdownRemark;
+    const { id: gameId, payout } = game;
 
+    const games = getSeasonGames(useGamesData(), game.season);
     const players = getGamePlayers(usePlayersData(), gameId);
 
-    const playersWithGamePoints = players.map((player) => {
-        const playerResult = frontmatter.results.filter(
-            (result) => result === player.id
-        )[0];
-        const playerResultIndex = frontmatter.results.indexOf(playerResult);
-        const points = frontmatter.points[playerResultIndex];
+    const playersWithPoints = players.map((player) => {
+        const position = getPlayerGamePosition(game, player);
+
+        const points = getPlayerPoints(game, player);
+
+        // all games the player has played the season this game is in
+        const playerGames = getPlayerGames(games, player.id);
+
+        let seasonPoints = 0;
+        playerGames.forEach((game) => {
+            seasonPoints += getPlayerPoints(game, player);
+        });
 
         return {
             ...player,
-            points
+            position,
+            points,
+            seasonPoints: seasonPoints.toFixed(2)
         };
     });
 
     const playerColumns = [
+        { field: 'position' },
         { field: 'profileImage', cellRendererFramework: ImageRenderer },
         { field: 'fullName' },
         { field: 'points' },
-        { field: 'currentSeasonPoints' }
+        { field: 'seasonPoints', headerName: `Season ${game.season} points` }
     ];
 
     const playerGrid = {
@@ -58,7 +77,7 @@ export default function Template({ data }) {
         <Layout>
             <section className={styles.Game}>
                 <h1>Game {gameId}</h1>
-                <p>Played on {frontmatter.date}</p>
+                <p>Played on {game.date}</p>
                 <h2>Payout</h2>
                 <ul>
                     {payout.map((prize, i) => (
@@ -73,7 +92,7 @@ export default function Template({ data }) {
                     <div className='ag-theme-alpine'>
                         <AgGridReact
                             gridOptions={playerGrid}
-                            rowData={playersWithGamePoints}
+                            rowData={playersWithPoints}
                             onRowClicked={(row) => navigate(row.data.path)}
                             domLayout='autoHeight'
                         />
