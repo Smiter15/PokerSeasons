@@ -9,19 +9,38 @@ const HomePage = () => {
         <Layout>
             <section className={styles.Home}>
                 <h1>Poker Seasons</h1>
-                <h3>Season 1</h3>
+                <h3>Season 2</h3>
                 <p>
-                    Just proof of concept, no season cash. Will record like 5
-                    games to see if people like it.
+                    First official season kick off! Buy in £5, half goes to the
+                    night's game half to to the season kitty.
                 </p>
                 <p>
-                    Lew helped create a formula for calulating points that
-                    scales as there are more playes. The higher you finish the
-                    more points you get relative to the other players.
+                    <b>Changes from season 1:</b>
+                    <br />
+                    - The season will run 8 weeks
+                    <br />
+                    - Minimum points for turning up is reduced from 10 to 5 so
+                    less detrimental if you miss a game
+                    <br />- Points given will be less spread apart from position
+                    to position to increase competitiveness
+                </p>
+                <p>
+                    <b>Prizes:</b>
+                    <br />
+                    - 1st 40% of kitty
+                    <br />
+                    - 2nd 25% of kitty
+                    <br />
+                    - 3rd 15% of kitty
+                    <br />
+                    <b>Side pots:</b>
+                    <br />
+                    - 10% for best K/D ratio (knockoutsto being knocked out)
+                    <br />- 10% for most bubble positions
                 </p>
                 <p>
                     <b>Formula</b>: Square root(Number of players/position of
-                    player) x 10
+                    player) x 5
                 </p>
                 <p>
                     <img
