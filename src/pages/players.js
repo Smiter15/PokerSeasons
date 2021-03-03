@@ -40,7 +40,7 @@ const Players = () => {
 
         return {
             ...player,
-            seasonPoints: seasonPoints.toFixed(2)
+            seasonPoints: parseFloat(seasonPoints.toFixed(2))
         };
     });
 

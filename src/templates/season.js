@@ -45,7 +45,7 @@ export default function Template({ data }) {
 
         return {
             ...player,
-            seasonPoints: seasonPoints.toFixed(2)
+            seasonPoints: parseFloat(seasonPoints.toFixed(2))
         };
     });
 
