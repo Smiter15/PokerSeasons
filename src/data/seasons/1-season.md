@@ -13,7 +13,9 @@ players:
 
 games:
     - 1
+    - 2
+    - 3
 
-currentKitty: TBD
-active: true
+currentKitty: VOID
+active: false
 ---

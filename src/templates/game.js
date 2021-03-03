@@ -82,7 +82,7 @@ export default function Template({ data }) {
                 <ul>
                     {payout.map((prize, i) => (
                         <li key={i}>
-                            {getOrdinal(i + 1)} - ${prize.toFixed(2)}
+                            {getOrdinal(i + 1)} - £{prize.toFixed(2)}
                         </li>
                     ))}
                 </ul>

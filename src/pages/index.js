@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'gatsby';
 
 import styles from '../css/pages/index.module.scss';
 
@@ -11,8 +12,22 @@ const HomePage = () => {
                 <h1>Poker Seasons</h1>
                 <h3>Season 2</h3>
                 <p>
-                    First official season kick off! Buy in £5, half goes to the
-                    night's game half to to the season kitty.
+                    First official season kick off! Buy in £5, 60% goes to the
+                    night's game and the remaining 40% to to the season kitty.
+                </p>
+                <p>
+                    Our treasurer{' '}
+                    <Link to='/players/will-whitell/'>Will Whitell</Link> will
+                    handle the moola and track it all in a sheet you can all
+                    view{' '}
+                    <a
+                        href='https://docs.google.com/spreadsheets/d/1dqdk92cgJ4rD8f0yxW6tmFwMixPSkJXqIR0vDwDFx84/'
+                        target='_blank'
+                        rel='noreferrer'
+                    >
+                        here
+                    </a>
+                    .
                 </p>
                 <p>
                     <b>Changes from season 1:</b>

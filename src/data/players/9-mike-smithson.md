@@ -15,11 +15,12 @@ blurb: >-
 
 seasons:
     - 1
+    - 2
 
 games:
 - 2
 
 careerEarnings: 0.00
-seasonsPlayed: 1
+seasonsPlayed: 2
 gamesPlayed: 1
 ---

@@ -315,19 +315,19 @@ describe('Utils', () => {
 
     describe('Points', () => {
         it('Returns the amount of points for position placed relative to players in game', () => {
-            expect(calcPoints(7, 1)).toBe(26.46);
-            expect(calcPoints(7, 2)).toBe(18.71);
-            expect(calcPoints(7, 3)).toBe(15.28);
-            expect(calcPoints(7, 4)).toBe(13.23);
-            expect(calcPoints(7, 5)).toBe(11.83);
-            expect(calcPoints(7, 6)).toBe(10.8);
-            expect(calcPoints(7, 7)).toBe(10);
+            expect(calcPoints(7, 1)).toBe(13.23);
+            expect(calcPoints(7, 2)).toBe(9.35);
+            expect(calcPoints(7, 3)).toBe(7.64);
+            expect(calcPoints(7, 4)).toBe(6.61);
+            expect(calcPoints(7, 5)).toBe(5.92);
+            expect(calcPoints(7, 6)).toBe(5.4);
+            expect(calcPoints(7, 7)).toBe(5);
         });
 
-        it('Always return 10 points for last position', () => {
-            expect(calcPoints(1, 1)).toBe(10);
-            expect(calcPoints(10, 10)).toBe(10);
-            expect(calcPoints(100, 100)).toBe(10);
+        it('Always return 5 points for last position', () => {
+            expect(calcPoints(1, 1)).toBe(5);
+            expect(calcPoints(10, 10)).toBe(5);
+            expect(calcPoints(100, 100)).toBe(5);
         });
     });
 

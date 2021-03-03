@@ -16,9 +16,9 @@ results:
 - 3
 # points for each position
 points:
-- 17.32
-- 12.25
-- 10
+- 8.66
+- 6.12
+- 5
 # player id on the left knocked out the player id on the right
 knockouts:
 - [1,3]

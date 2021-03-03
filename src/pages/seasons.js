@@ -25,9 +25,9 @@ const Seasons = () => {
                 </div>
                 <hr />
                 <h3>All seasons</h3>
-                <p>...</p>
-                <p>...</p>
-                <p>...</p>
+                <p>
+                    <Link to='/seasons/1/'>Season 1</Link>
+                </p>
             </section>
         </Layout>
     );

@@ -51,7 +51,7 @@ export const mapPlayersForSelect = (players) =>
 // POINTS
 
 export const calcPoints = (noPlayers, position) =>
-    parseFloat((Math.sqrt(noPlayers / position) * 10).toFixed(2));
+    parseFloat((Math.sqrt(noPlayers / position) * 5).toFixed(2));
 
 // KNOCKOUTS
 

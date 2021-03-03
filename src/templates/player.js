@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { graphql, navigate } from 'gatsby';
 import Img from 'gatsby-image';
 import ReactMarkdown from 'react-markdown/with-html';
@@ -21,7 +21,8 @@ import {
     getPlayerKDRatio,
     getPlayerKnockouts,
     getPlayer,
-    getPlayerPoints
+    getPlayerPoints,
+    getSeasonGames
 } from '../data/utils';
 
 import { useGamesData } from '../data/gamesData';
@@ -33,19 +34,30 @@ export default function Template({ data }) {
     const { frontmatter: player } = data.markdownRemark;
     const { id: playerId } = player;
 
-    const gamesData = useGamesData();
-    const games = getPlayerGames(gamesData, playerId);
+    const allGames = useGamesData();
+    const [games, setGames] = useState(getPlayerGames(allGames, playerId));
 
     const players = usePlayersData();
-
     const [k, d] = getPlayerKDRatio(games, playerId);
-
     const knockoutData = getPlayerKnockouts(games, players, playerId);
     const [playerIds, kills, deaths] = extract(knockoutData, [
         'id',
         'kills',
         'deaths'
     ]);
+
+    const handleSeasonSelect = (e) => {
+        if (Number(e.target.value) === 0) {
+            setGames(getPlayerGames(allGames, playerId));
+        } else {
+            setGames(
+                getPlayerGames(
+                    getSeasonGames(allGames, Number(e.target.value)),
+                    playerId
+                )
+            );
+        }
+    };
 
     const options = {
         chart: {
@@ -156,13 +168,20 @@ export default function Template({ data }) {
                 <h2>Poker career</h2>
                 <ul>
                     <li>
-                        Career earnings: ${player.careerEarnings.toFixed(2)}
+                        Career earnings: £{player.careerEarnings.toFixed(2)}
                     </li>
                     <li>Seasons played: {player.seasonsPlayed}</li>
                     <li>Games played: {player.gamesPlayed}</li>
                 </ul>
                 <hr />
-                <h2>Knockouts</h2>
+                <div className={styles.knockoutTitle}>
+                    <h2>Knockouts</h2>
+                    <select onChange={handleSeasonSelect}>
+                        <option value={0}>All seasons</option>
+                        <option value={1}>Season 1</option>
+                        <option value={2}>Season 2</option>
+                    </select>
+                </div>
                 <p>
                     Kill / death ratio:{' '}
                     {d === 0 ? k.toFixed(2) : (k / d).toFixed(2)}
