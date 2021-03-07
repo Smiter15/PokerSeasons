@@ -17,7 +17,8 @@ import {
     getSeasonGames,
     getSeasonPlayers,
     getPlayerGames,
-    getPlayerPoints
+    getPlayerPoints,
+    getSeasonKnockouts
 } from '../data/utils';
 
 import { useGamesData } from '../data/gamesData';
@@ -26,8 +27,8 @@ import { usePlayersData } from '../data/playersData';
 import { gridOptions } from '../components/grid/utils';
 
 export default function Template({ data }) {
-    const { frontmatter } = data.markdownRemark;
-    const seasonId = frontmatter.id;
+    const { frontmatter: season } = data.markdownRemark;
+    const { id: seasonId } = season;
 
     // get data
     const games = getSeasonGames(useGamesData(), seasonId);
@@ -35,7 +36,7 @@ export default function Template({ data }) {
 
     // calculate season points
     const playersWithSeasonPoints = players.map((player) => {
-        // all games the player has played this seasons
+        // all games the player has played this season
         const playerGames = getPlayerGames(games, player.id);
 
         let seasonPoints = 0;
@@ -45,7 +46,8 @@ export default function Template({ data }) {
 
         return {
             ...player,
-            seasonPoints: parseFloat(seasonPoints.toFixed(2))
+            seasonPoints: parseFloat(seasonPoints.toFixed(2)),
+            gamesPlayed: playerGames.length
         };
     });
 
@@ -87,7 +89,7 @@ export default function Template({ data }) {
         columnDefs: gameColumns
     };
 
-    const series = players.map((player) => {
+    const pointsSeries = players.map((player) => {
         const pointsData = games.map((game) => {
             // for each game get index of result for player
             const resultIndex = game.results.findIndex(
@@ -107,12 +109,12 @@ export default function Template({ data }) {
         };
     });
 
-    const options = {
+    const pointsOptions = {
         chart: {
             type: 'areaspline'
         },
         title: {
-            text: 'Season 1 - Game on game points'
+            text: `Season ${seasonId} - Game on game points`
         },
         xAxis: {
             title: {
@@ -138,14 +140,63 @@ export default function Template({ data }) {
                 fillOpacity: 0.3
             }
         },
-        series
+        series: pointsSeries
+    };
+
+    const seasonKnockouts = getSeasonKnockouts(games, players);
+
+    const knockoutOptions = {
+        chart: {
+            type: 'column'
+        },
+        title: {
+            text: 'Season knockouts'
+        },
+        xAxis: {
+            title: {
+                text: 'Players'
+            },
+            categories: players.map((player) => player.firstName)
+        },
+        yAxis: {
+            title: {
+                text: 'Number of knockouts'
+            },
+            tickInterval: 1
+        },
+        tooltip: {
+            valueSuffix: ' knockouts'
+        },
+        credits: {
+            enabled: false
+        },
+        plotOptions: {
+            column: {
+                pointPadding: 0.2,
+                borderWidth: 0
+            }
+        },
+        series: [
+            {
+                name: 'Kill',
+                data: seasonKnockouts.map((data) => data.kills),
+                color: 'green'
+            },
+            {
+                name: 'Death',
+                data: seasonKnockouts.map((data) => data.deaths),
+                color: 'red'
+            }
+        ]
     };
 
     return (
         <Layout>
             <section className={styles.Season}>
                 <h1>Season {seasonId}</h1>
-                <p>Money in the kitty: {frontmatter.currentKitty}</p>
+                {seasonId !== 1 && (
+                    <p>Money in the kitty: {season.currentKitty}</p>
+                )}
                 <hr />
                 <div className={styles.stats}>
                     <h2>Standings</h2>
@@ -161,7 +212,14 @@ export default function Template({ data }) {
                 <div className={styles.chart}>
                     <HighchartsReact
                         highcharts={Highcharts}
-                        options={options}
+                        options={pointsOptions}
+                    />
+                </div>
+                <hr />
+                <div className={styles.chart}>
+                    <HighchartsReact
+                        highcharts={Highcharts}
+                        options={knockoutOptions}
                     />
                 </div>
                 <hr />

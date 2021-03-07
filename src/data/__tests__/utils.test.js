@@ -18,6 +18,7 @@ import {
     calcPoints,
     extract,
     getPlayerKDRatio,
+    getSeasonKnockouts,
     getPlayerKnockouts
 } from '../utils';
 
@@ -353,6 +354,51 @@ describe('Utils', () => {
             expect(getPlayerKDRatio(games, 1)).toEqual([2, 2]);
             expect(getPlayerKDRatio(games, 2)).toEqual([2, 1]);
             expect(getPlayerKDRatio(games, 3)).toEqual([1, 2]);
+        });
+
+        it('Returns total amount of kills and deaths per player in a specific season', () => {
+            const seasonOneKnockouts = [
+                {
+                    playerId: 1,
+                    kills: 2,
+                    deaths: 1
+                },
+                {
+                    playerId: 2,
+                    kills: 1,
+                    deaths: 1
+                },
+                {
+                    playerId: 3,
+                    kills: 1,
+                    deaths: 2
+                }
+            ];
+            const seasonTwoKnockouts = [
+                {
+                    playerId: 1,
+                    kills: 0,
+                    deaths: 1
+                },
+                {
+                    playerId: 2,
+                    kills: 1,
+                    deaths: 0
+                }
+            ];
+
+            expect(
+                getSeasonKnockouts(
+                    getSeasonGames(games, 1),
+                    getSeasonPlayers(players, 1)
+                )
+            ).toEqual(seasonOneKnockouts);
+            expect(
+                getSeasonKnockouts(
+                    getSeasonGames(games, 2),
+                    getSeasonPlayers(players, 2)
+                )
+            ).toEqual(seasonTwoKnockouts);
         });
 
         it('Returns kills and deaths for each player the specific player has either killed or died to', () => {

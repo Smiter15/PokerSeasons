@@ -18,7 +18,18 @@ const Seasons = () => {
         <Layout>
             <section className={styles.Seasons}>
                 <h1>Seasons</h1>
-                <p>Seasons will run every 10 weeks. Extra stuff to say</p>
+                <p>Seaons change slightly as we refine the fun level.</p>
+                <h3>Season 1 - The tester</h3>
+                <p>
+                    The first season was to see if people were keen and if the
+                    site would work.
+                </p>
+                <h3>Season 2 - Game time</h3>
+                <p>
+                    First season to run with treasurer and handling finances in
+                    house. Runs for 8 weeks, minimum points for turning up are 5
+                    and some side pots added for lols.
+                </p>
                 <div className={styles.active}>
                     <h2>Active season</h2>
                     <Link to={activeSeason.path}>Season {activeSeason.id}</Link>
