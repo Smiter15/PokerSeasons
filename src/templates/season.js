@@ -92,7 +92,6 @@ export default function Template({ data }) {
             cellRendererFramework: (col) => `£${col.value[0].toFixed(2)}`
         }
     ];
-    console.log(games);
 
     const gameGrid = {
         ...gridOptions,

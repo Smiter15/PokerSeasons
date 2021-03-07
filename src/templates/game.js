@@ -1,6 +1,8 @@
 import React from 'react';
 import { graphql, navigate } from 'gatsby';
 import { AgGridReact } from 'ag-grid-react';
+import Highcharts from 'highcharts';
+import HighchartsReact from 'highcharts-react-official';
 
 import styles from '../css/templates/game.module.scss';
 
@@ -13,7 +15,8 @@ import {
     getGamePlayers,
     getPlayerPoints,
     getPlayerGamePosition,
-    getPlayerGames
+    getPlayerGames,
+    getGameKnockouts
 } from '../data/utils';
 
 import { useGamesData } from '../data/gamesData';
@@ -23,7 +26,7 @@ import { gridOptions } from '../components/grid/utils';
 
 export default function Template({ data }) {
     const { frontmatter: game } = data.markdownRemark;
-    const { id: gameId, payout } = game;
+    const { id: gameId, payout, knockouts } = game;
 
     const games = getSeasonGames(useGamesData(), game.season);
     const players = getGamePlayers(usePlayersData(), gameId);
@@ -73,6 +76,52 @@ export default function Template({ data }) {
         }
     };
 
+    const gameKnockouts = getGameKnockouts(knockouts, players);
+    const knockoutOptions = {
+        chart: {
+            type: 'column'
+        },
+        title: {
+            text: 'Game knockouts'
+        },
+        xAxis: {
+            title: {
+                text: 'Players'
+            },
+            categories: players.map((player) => player.firstName)
+        },
+        yAxis: {
+            title: {
+                text: 'Number of knockouts'
+            },
+            tickInterval: 1
+        },
+        tooltip: {
+            valueSuffix: ' knockouts'
+        },
+        credits: {
+            enabled: false
+        },
+        plotOptions: {
+            column: {
+                pointPadding: 0.2,
+                borderWidth: 0
+            }
+        },
+        series: [
+            {
+                name: 'Kill',
+                data: gameKnockouts.map((data) => data.kills),
+                color: 'green'
+            },
+            {
+                name: 'Death',
+                data: gameKnockouts.map((data) => data.deaths),
+                color: 'red'
+            }
+        ]
+    };
+
     return (
         <Layout>
             <section className={styles.Game}>
@@ -97,6 +146,13 @@ export default function Template({ data }) {
                             domLayout='autoHeight'
                         />
                     </div>
+                </div>
+                <hr />
+                <div className={styles.chart}>
+                    <HighchartsReact
+                        highcharts={Highcharts}
+                        options={knockoutOptions}
+                    />
                 </div>
             </section>
         </Layout>

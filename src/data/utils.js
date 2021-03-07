@@ -92,6 +92,21 @@ export const getSeasonKnockouts = (games, players) => {
     return knockoutData;
 };
 
+export const getGameKnockouts = (knockouts, players) => {
+    const knockoutData = players.map((player) => {
+        return { playerId: player.id, kills: 0, deaths: 0 };
+    });
+
+    knockouts.forEach(([kill, death]) => {
+        knockoutData.forEach((player, i) => {
+            if (kill === player.playerId) knockoutData[i].kills++;
+            if (death === player.playerId) knockoutData[i].deaths++;
+        });
+    });
+
+    return knockoutData;
+};
+
 export const getPlayerKnockouts = (games, allPlayers, playerId) => {
     const knockoutData = [];
 
