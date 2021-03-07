@@ -81,12 +81,25 @@ export default function Template({ data }) {
             field: 'winner',
             cellRendererFramework: WinnerRenderer,
             cellRendererParams: { players }
+        },
+        {
+            field: 'points',
+            cellRendererFramework: (col) => col.value[0]
+        },
+        {
+            field: 'payout',
+            headerName: 'Prize',
+            cellRendererFramework: (col) => `£${col.value[0].toFixed(2)}`
         }
     ];
+    console.log(games);
 
     const gameGrid = {
         ...gridOptions,
-        columnDefs: gameColumns
+        columnDefs: gameColumns,
+        onGridReady: (e) => {
+            e.api.sizeColumnsToFit();
+        }
     };
 
     const pointsSeries = players.map((player) => {
@@ -144,7 +157,6 @@ export default function Template({ data }) {
     };
 
     const seasonKnockouts = getSeasonKnockouts(games, players);
-
     const knockoutOptions = {
         chart: {
             type: 'column'
