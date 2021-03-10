@@ -22,8 +22,9 @@ games:
 - 2
 - 3
 - 4
+- 5
 
 careerEarnings: 42.30
 seasonsPlayed: 2
-gamesPlayed: 4
+gamesPlayed: 5
 ---
