@@ -1,4 +1,5 @@
 export const WIDTH =
-    window.innerWidth ||
-    document.documentElement.clientWidth ||
-    document.body.clientWidth;
+    typeof window !== 'undefined' &&
+    (window.innerWidth ||
+        document.documentElement.clientWidth ||
+        document.body.clientWidth);
