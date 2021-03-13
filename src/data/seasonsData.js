@@ -17,7 +17,7 @@ export const useSeasonsData = () => {
                                 path
                                 players
                                 games
-                                currentKitty
+                                kitty
                                 active
                             }
                         }

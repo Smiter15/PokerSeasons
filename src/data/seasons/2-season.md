@@ -18,6 +18,6 @@ games:
 - 4
 - 5
 
-currentKitty: £30.0
+kitty: 30.0
 active: true
 ---

@@ -50,7 +50,7 @@ export default function Template({ data }) {
             ...player,
             kdRatio: getPlayerKDRatio(games, player.id),
             bubbles: getPlayerBubbles(games, player.id),
-            seasonPoints: parseFloat(seasonPoints.toFixed(2)),
+            points: parseFloat(seasonPoints.toFixed(2)),
             gamesPlayed: playerGames.length
         };
     });
@@ -58,7 +58,7 @@ export default function Template({ data }) {
     const playerColumns = [
         { field: 'profileImage', cellRendererFramework: ImageRenderer },
         { field: 'fullName' },
-        { field: 'seasonPoints' },
+        { field: 'points' },
         { field: 'kdRatio' },
         { field: 'bubbles' },
         { field: 'gamesPlayed' }
@@ -71,7 +71,7 @@ export default function Template({ data }) {
             e.columnApi.applyColumnState({
                 state: [
                     {
-                        colId: 'seasonPoints',
+                        colId: 'points',
                         sort: 'desc'
                     }
                 ]
@@ -211,9 +211,7 @@ export default function Template({ data }) {
         <Layout>
             <section className={styles.Season}>
                 <h1>Season {seasonId}</h1>
-                {seasonId !== 1 && (
-                    <p>Money in the kitty: £{season.currentKitty}</p>
-                )}
+                Money in the kitty: £{season.kitty}
                 <hr />
                 <div className={styles.stats}>
                     <h2>Standings</h2>
@@ -262,7 +260,7 @@ export const pageQuery = graphql`
                 path
                 players
                 games
-                currentKitty
+                kitty
                 active
             }
         }

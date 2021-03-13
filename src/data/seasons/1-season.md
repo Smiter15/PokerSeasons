@@ -16,6 +16,6 @@ games:
     - 2
     - 3
 
-currentKitty: VOID
+kitty: 0.0
 active: false
 ---

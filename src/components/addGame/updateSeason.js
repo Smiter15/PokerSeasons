@@ -13,7 +13,7 @@ const generateGamesList = (season, gameId) => {
 
 const addToKitty = (season, noPlayers) => {
     const contribution = noPlayers * 5 * 0.4;
-    return (season.currentKitty + contribution).toFixed(2);
+    return (season.kitty + contribution).toFixed(2);
 };
 
 export const updateSeason = (season, gameId, noPlayers) => {
@@ -34,7 +34,7 @@ ${renderArrayData(season.players)}
 games:
 ${generateGamesList(season, gameId)}
 
-currentKitty: ${addToKitty(season, noPlayers)}
+kitty: ${addToKitty(season, noPlayers)}
 active: ${season.active}
 ---`;
 };

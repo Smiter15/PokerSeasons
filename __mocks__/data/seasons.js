@@ -4,7 +4,7 @@ export const seasons = [
         path: '/seasons/1/',
         players: [1, 2, 3],
         games: [1, 2],
-        currentKitty: 0.0,
+        kitty: 0.0,
         active: false
     },
     {
@@ -12,7 +12,7 @@ export const seasons = [
         path: '/seasons/2/',
         players: [1, 2],
         games: [3],
-        currentKitty: 25.0,
+        kitty: 25.0,
         active: true
     }
 ];

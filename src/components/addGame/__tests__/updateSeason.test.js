@@ -17,7 +17,7 @@ games:
 - 3
 - 4
 
-currentKitty: 29.00
+kitty: 29.00
 active: true
 ---`;
 

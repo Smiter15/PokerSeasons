@@ -59,7 +59,7 @@ describe('Utils', () => {
                 path: '/seasons/2/',
                 players: [1, 2],
                 games: [3],
-                currentKitty: 25.0,
+                kitty: 25.0,
                 active: true
             };
 
