@@ -59,7 +59,7 @@ describe('Utils', () => {
                 path: '/seasons/2/',
                 players: [1, 2],
                 games: [3],
-                currentKitty: 25,
+                currentKitty: 25.0,
                 active: true
             };
 
@@ -123,6 +123,7 @@ describe('Utils', () => {
                     fullName: 'Matt Smithson',
                     nickName: 'Billy big bollocks',
                     fullNickName: 'Matt "Billy big bollocks" Smithson',
+                    profileImage: '../../images/players/matt-smithson.png',
                     joinedDate: '2021-02-05T14:30:35.701Z',
                     occupation: 'Buggy website builder',
                     role: 'Chairman',
@@ -142,6 +143,7 @@ describe('Utils', () => {
                     fullName: 'Will Whitell',
                     nickName: 'Fishing for Tommy',
                     fullNickName: 'Will "Fishing for Tommy" Whitell',
+                    profileImage: '../../images/players/will-whitell.png',
                     joinedDate: '2021-02-05T14:30:35.701Z',
                     occupation: 'Hippy',
                     role: 'Treasurer',
@@ -173,6 +175,7 @@ describe('Utils', () => {
                     fullName: 'Matt Smithson',
                     nickName: 'Billy big bollocks',
                     fullNickName: 'Matt "Billy big bollocks" Smithson',
+                    profileImage: '../../images/players/matt-smithson.png',
                     joinedDate: '2021-02-05T14:30:35.701Z',
                     occupation: 'Buggy website builder',
                     role: 'Chairman',
@@ -192,6 +195,7 @@ describe('Utils', () => {
                     fullName: 'Will Whitell',
                     nickName: 'Fishing for Tommy',
                     fullNickName: 'Will "Fishing for Tommy" Whitell',
+                    profileImage: '../../images/players/will-whitell.png',
                     joinedDate: '2021-02-05T14:30:35.701Z',
                     occupation: 'Hippy',
                     role: 'Treasurer',
@@ -221,6 +225,7 @@ describe('Utils', () => {
                 fullName: 'Matt Smithson',
                 nickName: 'Billy big bollocks',
                 fullNickName: 'Matt "Billy big bollocks" Smithson',
+                profileImage: '../../images/players/matt-smithson.png',
                 joinedDate: '2021-02-05T14:30:35.701Z',
                 occupation: 'Buggy website builder',
                 role: 'Chairman',
@@ -351,9 +356,9 @@ describe('Utils', () => {
         });
 
         it('Returns total kills and deaths for a specific player', () => {
-            expect(getPlayerKDRatio(games, 1)).toEqual([2, 2]);
-            expect(getPlayerKDRatio(games, 2)).toEqual([2, 1]);
-            expect(getPlayerKDRatio(games, 3)).toEqual([1, 2]);
+            expect(getPlayerKDRatio(games, 1)).toBe('1.00');
+            expect(getPlayerKDRatio(games, 2)).toBe('2.00');
+            expect(getPlayerKDRatio(games, 3)).toBe('0.50');
         });
 
         it('Returns total amount of kills and deaths per player in a specific season', () => {

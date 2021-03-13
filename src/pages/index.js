@@ -38,6 +38,9 @@ const HomePage = () => {
                     less detrimental if you miss a game
                     <br />- Points given will be less spread apart from position
                     to position to increase competitiveness
+                    <br />- No-one can win more than 1 prize
+                    <br />- In case of a tie, K/D ratio will be used to
+                    determine the winner
                 </p>
                 <p>
                     <b>Prizes:</b>

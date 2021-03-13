@@ -18,7 +18,9 @@ import {
     getSeasonPlayers,
     getPlayerGames,
     getPlayerPoints,
-    getSeasonKnockouts
+    getPlayerKDRatio,
+    getSeasonKnockouts,
+    getPlayerBubbles
 } from '../data/utils';
 
 import { useGamesData } from '../data/gamesData';
@@ -35,7 +37,7 @@ export default function Template({ data }) {
     const players = getSeasonPlayers(usePlayersData(), seasonId);
 
     // calculate season points
-    const playersWithSeasonPoints = players.map((player) => {
+    const playersWithAddedData = players.map((player) => {
         // all games the player has played this season
         const playerGames = getPlayerGames(games, player.id);
 
@@ -46,6 +48,8 @@ export default function Template({ data }) {
 
         return {
             ...player,
+            kdRatio: getPlayerKDRatio(games, player.id),
+            bubbles: getPlayerBubbles(games, player.id),
             seasonPoints: parseFloat(seasonPoints.toFixed(2)),
             gamesPlayed: playerGames.length
         };
@@ -55,6 +59,8 @@ export default function Template({ data }) {
         { field: 'profileImage', cellRendererFramework: ImageRenderer },
         { field: 'fullName' },
         { field: 'seasonPoints' },
+        { field: 'kdRatio' },
+        { field: 'bubbles' },
         { field: 'gamesPlayed' }
     ];
 
@@ -206,7 +212,7 @@ export default function Template({ data }) {
             <section className={styles.Season}>
                 <h1>Season {seasonId}</h1>
                 {seasonId !== 1 && (
-                    <p>Money in the kitty: {season.currentKitty}</p>
+                    <p>Money in the kitty: £{season.currentKitty}</p>
                 )}
                 <hr />
                 <div className={styles.stats}>
@@ -214,7 +220,7 @@ export default function Template({ data }) {
                     <div className='ag-theme-alpine'>
                         <AgGridReact
                             gridOptions={playerGrid}
-                            rowData={playersWithSeasonPoints}
+                            rowData={playersWithAddedData}
                             onRowClicked={(row) => navigate(row.data.path)}
                             domLayout='autoHeight'
                         />

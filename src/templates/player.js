@@ -38,7 +38,7 @@ export default function Template({ data }) {
     const [games, setGames] = useState(getPlayerGames(allGames, playerId));
 
     const players = usePlayersData();
-    const [k, d] = getPlayerKDRatio(games, playerId);
+    const kdRatio = getPlayerKDRatio(games, playerId);
     const knockoutData = getPlayerKnockouts(games, players, playerId);
     const [playerIds, kills, deaths] = extract(knockoutData, [
         'id',
@@ -182,10 +182,7 @@ export default function Template({ data }) {
                         <option value={2}>Season 2</option>
                     </select>
                 </div>
-                <p>
-                    Kill / death ratio:{' '}
-                    {d === 0 ? k.toFixed(2) : (k / d).toFixed(2)}
-                </p>
+                <p>Kill / death ratio: {kdRatio}</p>
                 <HighchartsReact highcharts={Highcharts} options={options} />
                 <hr />
                 <h2>Games</h2>

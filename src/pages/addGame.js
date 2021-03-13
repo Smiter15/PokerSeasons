@@ -20,6 +20,7 @@ import {
 
 import { createGame } from '../components/addGame/createGame';
 import { updatePlayer } from '../components/addGame/updatePlayer';
+import { updateSeason } from '../components/addGame/updateSeason';
 
 const AddGame = () => {
     // get data
@@ -91,10 +92,14 @@ const AddGame = () => {
             updatePlayer(
                 getPlayer(players, player.value),
                 newGameId,
+                currentSeason.id,
                 points,
                 prize
             );
         });
+
+        // update season data
+        updateSeason(currentSeason, newGameId, resultPlayers.length);
 
         // create game data
         const blob = new Blob(

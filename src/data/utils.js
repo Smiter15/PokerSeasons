@@ -43,10 +43,20 @@ export const getPlayerGamePosition = (game, player) => {
 export const getPlayerGames = (games, playerId) =>
     games.filter((game) => game.results.includes(playerId));
 
-export const mapPlayersForSelect = (players) =>
-    players.map((player) => {
-        return { value: player.id, label: player.fullName, points: 0 };
+export const getPlayerBubbles = (games, playerId) => {
+    let bubbleCount = 0;
+    games.forEach((game) => {
+        if (game.results[game.payout.length] === playerId) bubbleCount++;
     });
+    return bubbleCount;
+};
+
+export const mapPlayersForSelect = (players) =>
+    players.map((player) => ({
+        value: player.id,
+        label: player.fullName,
+        points: 0
+    }));
 
 // POINTS
 
@@ -70,7 +80,8 @@ export const getPlayerKDRatio = (games, playerId) => {
         });
     });
 
-    return kd;
+    const [k, d] = kd;
+    return d === 0 ? k.toFixed(2) : (k / d).toFixed(2);
 };
 
 export const getSeasonKnockouts = (games, players) => {
