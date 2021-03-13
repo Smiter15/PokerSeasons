@@ -32,7 +32,6 @@ knockouts:
 payout:
 - 18.9
 - 8.1
-- 0
 # player id
 winner: 2
 ---

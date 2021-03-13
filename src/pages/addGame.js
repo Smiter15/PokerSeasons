@@ -78,10 +78,6 @@ const AddGame = () => {
     };
 
     const addGame = () => {
-        const knockouts = killers.map((killer, i) => {
-            return [...[killer.value, dead[i].value]];
-        });
-
         // update player data
         resultPlayers.forEach((player, i) => {
             const points = calcPoints(resultPlayers.length, i + 1);
@@ -102,6 +98,15 @@ const AddGame = () => {
         updateSeason(currentSeason, newGameId, resultPlayers.length);
 
         // create game data
+        const knockouts = killers.map((killer, i) => {
+            return [...[killer.value, dead[i].value]];
+        });
+        const payout = [
+            parseFloat(payout1),
+            parseFloat(payout2),
+            ...(parseFloat(payout3) ? [parseFloat(payout3)] : [])
+        ];
+
         const blob = new Blob(
             [
                 createGame(
@@ -110,11 +115,7 @@ const AddGame = () => {
                     seasonGameCount,
                     resultPlayers,
                     date,
-                    [
-                        parseFloat(payout1),
-                        parseFloat(payout2),
-                        parseFloat(payout3)
-                    ],
+                    payout,
                     knockouts
                 )
             ],
