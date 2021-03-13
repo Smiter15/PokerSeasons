@@ -4,6 +4,8 @@ import { AgGridReact } from 'ag-grid-react';
 import Highcharts from 'highcharts';
 import HighchartsReact from 'highcharts-react-official';
 
+import { WIDTH } from '../constants';
+
 import styles from '../css/templates/game.module.scss';
 
 import Layout from '../components/Layout';
@@ -72,7 +74,7 @@ export default function Template({ data }) {
                     }
                 ]
             });
-            e.api.sizeColumnsToFit();
+            if (WIDTH > 768) e.api.sizeColumnsToFit();
         }
     };
 

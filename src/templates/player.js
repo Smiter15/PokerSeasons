@@ -6,6 +6,8 @@ import { AgGridReact } from 'ag-grid-react';
 import Highcharts from 'highcharts';
 import HighchartsReact from 'highcharts-react-official';
 
+import { WIDTH } from '../constants';
+
 import 'ag-grid-community/dist/styles/ag-grid.css';
 import 'ag-grid-community/dist/styles/ag-theme-alpine.css';
 
@@ -133,7 +135,9 @@ export default function Template({ data }) {
     const gameGrid = {
         ...gridOptions,
         columnDefs: gameColumns,
-        onGridReady: (e) => e.api.sizeColumnsToFit()
+        onGridReady: (e) => {
+            if (WIDTH > 768) e.api.sizeColumnsToFit();
+        }
     };
 
     return (

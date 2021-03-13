@@ -2,6 +2,8 @@ import React from 'react';
 import { navigate } from 'gatsby';
 import { AgGridReact } from 'ag-grid-react';
 
+import { WIDTH } from '../constants';
+
 import 'ag-grid-community/dist/styles/ag-grid.css';
 import 'ag-grid-community/dist/styles/ag-theme-alpine.css';
 
@@ -64,7 +66,7 @@ const Players = () => {
                     }
                 ]
             });
-            e.api.sizeColumnsToFit();
+            if (WIDTH > 768) e.api.sizeColumnsToFit();
         }
     };
 

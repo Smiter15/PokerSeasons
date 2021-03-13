@@ -2,6 +2,8 @@ import React from 'react';
 import { Link, navigate } from 'gatsby';
 import { AgGridReact } from 'ag-grid-react';
 
+import { WIDTH } from '../constants';
+
 import 'ag-grid-community/dist/styles/ag-grid.css';
 import 'ag-grid-community/dist/styles/ag-theme-alpine.css';
 
@@ -35,7 +37,9 @@ const Games = () => {
     const gameGrid = {
         ...gridOptions,
         columnDefs: gameColumns,
-        onGridReady: (e) => e.api.sizeColumnsToFit()
+        onGridReady: (e) => {
+            if (WIDTH > 768) e.api.sizeColumnsToFit();
+        }
     };
 
     return (
