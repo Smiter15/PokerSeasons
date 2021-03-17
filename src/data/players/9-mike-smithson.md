@@ -14,15 +14,16 @@ blurb: >-
     More partial to blackjack, he also enjoys and loses money at poker. <br /> His biggest tournament win to date is circa $2. <br /> <strong>You</strong> try saying Smithson way drunk.
 
 seasons:
-    - 1
-    - 2
+- 1
+- 2
 
 games:
 - 2
 - 4
 - 5
+- 6
 
 careerEarnings: 0.00
 seasonsPlayed: 2
-gamesPlayed: 3
+gamesPlayed: 4
 ---

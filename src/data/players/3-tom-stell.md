@@ -14,16 +14,17 @@ blurb: >-
     T-Pain not known for his gambling has developed as an exceptionally lucky poker player over lock down. Cheeky git. <br /> His biggest tournament win to date is circa $18. <br /> Just ask for the picture behind the name.
 
 seasons:
-    - 1
-    - 2
+- 1
+- 2
 
 games:
 - 1
 - 2
 - 3
 - 4
+- 6
 
 careerEarnings: 8.10
 seasonsPlayed: 2
-gamesPlayed: 4
+gamesPlayed: 5
 ---

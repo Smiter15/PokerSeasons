@@ -49,7 +49,10 @@ const Players = () => {
     const playerColumns = [
         { field: 'profileImage', cellRendererFramework: ImageRenderer },
         { field: 'fullName' },
-        { field: 'careerEarnings' },
+        {
+            field: 'careerEarnings',
+            cellRendererFramework: (column) => `£${column.value.toFixed(2)}`
+        },
         { field: 'seasonPoints', headerName: 'Current season points' },
         { field: 'gamesPlayed' }
     ];

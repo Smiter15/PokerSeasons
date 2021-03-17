@@ -14,8 +14,8 @@ blurb: >-
     Super keen for about half hour and then just sees what happens 🤷‍ <br /> His biggest tournament win to date is circa $5. <br /> No-one can read him or knows whats going on.
 
 seasons:
-    - 1
-    - 2
+- 1
+- 2
 
 games:
 - 1
@@ -23,8 +23,9 @@ games:
 - 3
 - 4
 - 5
+- 6
 
 careerEarnings: 17.85
 seasonsPlayed: 2
-gamesPlayed: 5
+gamesPlayed: 6
 ---

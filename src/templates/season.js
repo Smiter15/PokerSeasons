@@ -164,6 +164,10 @@ export default function Template({ data }) {
     };
 
     const seasonKnockouts = getSeasonKnockouts(games, players);
+    const mostKills = Math.max(
+        ...seasonKnockouts.map((knockout) => knockout.kills),
+        0
+    );
     const knockoutOptions = {
         chart: {
             type: 'column'
@@ -181,7 +185,8 @@ export default function Template({ data }) {
             title: {
                 text: 'Number of knockouts'
             },
-            tickInterval: 1
+            tickInterval: 1,
+            max: mostKills
         },
         tooltip: {
             valueSuffix: ' knockouts'

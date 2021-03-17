@@ -14,16 +14,17 @@ blurb: >-
     Will once ate 20 creme eggs for a bet. He did it but the lifetime diabetes after was "probably not worth the 2 quid". <br /> His biggest tournament win to date is circa $25. <br /> He wouldn't actually fish, as that goes against his vegan religion.
 
 seasons:
-    - 1
-    - 2
+- 1
+- 2
 
 games:
 - 2
 - 3
 - 4
 - 5
+- 6
 
-careerEarnings: 24.15
+careerEarnings: 28.20
 seasonsPlayed: 2
-gamesPlayed: 4
+gamesPlayed: 5
 ---

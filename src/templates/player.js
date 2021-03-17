@@ -47,6 +47,7 @@ export default function Template({ data }) {
         'kills',
         'deaths'
     ]);
+    const mostKills = Math.max(...kills);
 
     const handleSeasonSelect = (e) => {
         if (Number(e.target.value) === 0) {
@@ -78,7 +79,8 @@ export default function Template({ data }) {
             title: {
                 text: 'Number of knockouts'
             },
-            tickInterval: 1
+            tickInterval: 1,
+            max: mostKills
         },
         tooltip: {
             valueSuffix: ' knockouts'
