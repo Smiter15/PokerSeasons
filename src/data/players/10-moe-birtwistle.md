@@ -14,14 +14,15 @@ blurb: >-
     Usually a frequent sports better he is now desparately chasing his losses swinging and missing at poker. <br /> His biggest tournament win to date is circa -$5. <br /> Sky bet loves him.
 
 seasons:
-    - 1
-    - 2
+- 1
+- 2
 
 games:
 - 2
 - 4
+- 7
 
 careerEarnings: 4.50
 seasonsPlayed: 2
-gamesPlayed: 2
+gamesPlayed: 3
 ---
