@@ -157,7 +157,7 @@ export default function Template({ data }) {
         },
         plotOptions: {
             areaspline: {
-                fillOpacity: 0.1
+                fillOpacity: 0.03
             }
         },
         series: pointsSeries
