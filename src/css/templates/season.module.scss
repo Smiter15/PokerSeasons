@@ -3,7 +3,7 @@
 .Season {
     @include page;
     .chart {
-        max-width: 600px;
+        max-width: 100%;
         margin: 2rem auto;
     }
 }

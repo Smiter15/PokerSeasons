@@ -21,7 +21,8 @@ games:
 - 7
 - 8
 - 9
+- 10
 
-kitty: 100.0
+kitty: 114.0
 active: true
 ---
