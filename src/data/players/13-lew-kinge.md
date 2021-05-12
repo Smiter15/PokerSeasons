@@ -14,7 +14,7 @@ blurb: >-
     Doesn't gamble but has lost money on roulette, blackjack, poker, sports bets all out of FOMO. <br /> His biggest tournament win to date is circa $1. <br /> Doesn't know how to play poker
 
 seasons:
-- 2
+- 1
 
 games:
 - 5

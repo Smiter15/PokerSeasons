@@ -14,8 +14,8 @@ blurb: >-
     AJ is still learning how to play poker, one day he'll know whats going on. <br /> His biggest tournament win to date is circa $22. <br /> AJ is a kin to a vagina and will fold to any raise.
 
 seasons:
+- 0
 - 1
-- 2
 
 games:
 - 1

@@ -14,7 +14,7 @@ blurb: >-
     Jon famously won many money drunk on roulette and spent it all on his house party for the lads the next day, what a ruddy champ. <br /> His biggest tournament win to date is like £20 in real life, he's better in real life. <br /> Likes to crash.
 
 seasons:
-    - 1
+    - 0
 
 games:
 - 3

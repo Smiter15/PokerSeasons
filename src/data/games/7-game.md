@@ -1,7 +1,7 @@
 ---
 id: 7
 path: /games/7/
-season: 2
+season: 1
 seasonGame: 4
 date: 2021-03-24
 

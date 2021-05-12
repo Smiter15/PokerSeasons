@@ -14,8 +14,8 @@ blurb: >-
     Usually a frequent sports better he is now desparately chasing his losses swinging and missing at poker. <br /> His biggest tournament win to date is circa -$5. <br /> Sky bet loves him.
 
 seasons:
+- 0
 - 1
-- 2
 
 games:
 - 2

@@ -14,8 +14,8 @@ blurb: >-
     Representing the girls because "poker is for the boys". <br /> Her biggest tournament win to date is circa $15. (Matt let her). <br /> Short in life, short stack at the table.
 
 seasons:
+- 0
 - 1
-- 2
 
 games:
 - 1

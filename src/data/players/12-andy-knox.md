@@ -14,6 +14,7 @@ blurb: >-
     Never missed a £5 free bet at the casino, especially when the free buffet was on! Northener... <br /> His biggest tournament win to date is circa $33 probably. <br /> Loves baths even more than poker
 
 seasons:
+- 1
 - 2
 
 games:
@@ -24,8 +25,9 @@ games:
 - 9
 - 10
 - 11
+- 12
 
 careerEarnings: 45.30
-seasonsPlayed: 1
-gamesPlayed: 7
+seasonsPlayed: 2
+gamesPlayed: 8
 ---

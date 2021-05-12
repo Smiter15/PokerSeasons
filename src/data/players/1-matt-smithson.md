@@ -14,6 +14,7 @@ blurb: >-
     Matt was once sponsored by Plymouth University to represent them amongst 9 other elite players in the National Student Tournament, hosted by Grovesnor casino in Bristol. He did shit. <br /> His biggest tournament win to date is circa $68. <br /> Despite his nick name, he in fact has small bollocks.
 
 seasons:
+- 0
 - 1
 - 2
 
@@ -29,8 +30,9 @@ games:
 - 9
 - 10
 - 11
+- 12
 
 careerEarnings: 67.65
-seasonsPlayed: 2
-gamesPlayed: 11
+seasonsPlayed: 3
+gamesPlayed: 12
 ---

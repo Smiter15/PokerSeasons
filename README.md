@@ -12,4 +12,4 @@ See the site at <a href="https://relaxed-lamarr-acb28f.netlify.app/" target="_bl
 
 ### Known issues
 
-<p>Adds 2 games to a new player when adding a game with /addGame</p>
+<p>Adds 2 games to a NEW player when adding a game with /addGame</p>

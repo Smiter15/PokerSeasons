@@ -39,7 +39,7 @@ const HomePage = () => {
                     <br />- Points given will be less spread apart from position
                     to position to increase competitiveness
                     <br />- No-one can win more than 1 prize
-                    <br />- In case of a tie, K/D ratio will be used to
+                    <br />- In case of a tie, season score will be used to
                     determine the winner
                 </p>
                 <p>
@@ -57,8 +57,8 @@ const HomePage = () => {
                     <br />- 10% for most bubble positions
                 </p>
                 <p>
-                    <b>Formula</b>: Square root(Number of players/position of
-                    player) x 5
+                    <b>Formula</b>: Square root((Number of players/position of
+                    player) x 1.8) x 5
                 </p>
                 <p>
                     <img

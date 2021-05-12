@@ -14,7 +14,7 @@ blurb: >-
     Only plays when the kitty is "worth his time". Shame he never cashes out. <br /> His biggest tournament win to date is circa $2. <br /> He has a bean head. Favourite bean is lima.
 
 seasons:
-    - 1
+    - 0
 
 games:
 - 1

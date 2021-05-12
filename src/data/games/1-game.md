@@ -1,7 +1,7 @@
 ---
 id: 1
 path: /games/1/
-season: 1
+season: 0
 seasonGame: 1
 date: 2021-02-2021
 
