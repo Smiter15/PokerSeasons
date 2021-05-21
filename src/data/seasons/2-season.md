@@ -12,7 +12,8 @@ players:
 
 games:
 - 12
+- 13
 
-kitty: 12.0
+kitty: 24.0
 active: true
 ---

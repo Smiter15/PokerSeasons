@@ -15,6 +15,7 @@ blurb: >-
 
 seasons:
 - 1
+- 2
 
 games:
 - 5
@@ -22,8 +23,9 @@ games:
 - 7
 - 9
 - 11
+- 13
 
-careerEarnings: 6.75
-seasonsPlayed: 1
-gamesPlayed: 5
+careerEarnings: 16.50
+seasonsPlayed: 2
+gamesPlayed: 6
 ---
