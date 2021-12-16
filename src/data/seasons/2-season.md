@@ -16,5 +16,5 @@ games:
   - 14
 
 kitty: 36.0
-active: true
+active: false
 ---
